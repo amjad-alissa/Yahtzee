@@ -175,20 +175,25 @@ a {
 
 
 /*Score Block Styles*/
-.upper-section, .dice-icon-eye {
+div .upper-section, div .yellow-dice-icon-container, div .lower-section {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
+div .upper-section, div .lower-section {
+    overflow: auto;
+}
 
 .table {
-    table-layout: fixed;
+    table-layout: auto;
     border: 3px solid var(--primary-colro);
     border-radius: 4px;
     background-color: var(--background-color-light);
     margin: 8px;
+    border-spacing: 3px;
+    min-width: max-content;
 }
 
 /*.score-block .upper-section table {
@@ -206,7 +211,7 @@ a {
     margin: 4px;
 }*/
 .upper-table td, .lower-table td {
-    border: 1px solid var(--primary-colro);
+    border: 2px solid var(--primary-colro);
     text-align: center;
     align-items: center;
     color: var(--secondary-color);
