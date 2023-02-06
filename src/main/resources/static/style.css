@@ -1,0 +1,320 @@
+/*define constant variables for the colors, sizes and fonts*/
+:root {
+    --primary-colro: #c45551;
+    --secondary-color: #2a9d8f;
+    --background-color: #3d405b;
+    --background-color-light: #4e516a;
+    --font-colro: #879e82;
+    --main-font: 'Poppins', sans-serif;
+    --font-size-big: 32px;
+    --font-size-medium: 24px;
+    --font-size-small: 16px;
+    --font-bold: 700;
+    --font-light: 400;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+/*Header Styles*/
+.header-content, .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: 100vw;
+    padding: 24px;
+    background-color: var(--background-color-light);
+}
+
+.logo-img {
+    height: 48px;
+    width: 48px;
+    top: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.logo-text {
+    transition: all 0.3s ease 0s;
+    color: var(--primary-colro);
+    font-size: var(--font-size-big);
+    cursor: pointer;
+}
+
+.logo-text:hover {
+    color: var(--secondary-color);
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 16px;
+    background-color: transparent;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+    color: var(--primary-colro);
+    font-size: var(--font-size-big);
+    cursor: pointer;
+}
+
+.nav-links li a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-links li:active, .nav-links li a:active {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+}
+
+.btn, .login-btn, .signup-btn, .shuffel-btn {
+    font-family: var(--main-font);
+    font-weight: var(--font-bold);
+    font-size: var(--font-size-medium);
+    padding: 8px 16px;
+    margin: 4px;
+    background-color: var(--primary-colro);
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    align-items: center;
+    text-align: center;
+}
+
+.btn:hover, .login-btn:hover, .signup-btn:hover {
+    color: var(--secondary-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+/*Footer Styles*/
+.footer-content {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    flex-direction: column;
+    color: var(--font-colro);
+    font-weight: var(--font-light);
+}
+
+/*Rules View Styles*/
+.container, .rules-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.index-container {
+    margin: 0;
+    padding: 0;
+}
+.rules-container {
+    padding: 24px;
+    width: 840px;
+    margin-bottom: 120px;
+}
+
+
+.rules-content li, .rules-content p {
+    font-family: var(--main-font);
+    font-weight: var(--font-light);
+    font-size: 24px;
+    color: var(--font-colro);
+    padding: 8px;
+    text-align: justify;
+}
+
+.rules-content p {
+    font-weight: var(--font-bold);
+}
+
+.rules-subtitle, .vs {
+    font-family: var(--main-font);
+    font-size: 40px;
+    font-weight: var(--font-bold);
+    color: var(--primary-colro);
+    text-align: center;
+}
+
+.kniffel-img {
+    border: var(--secondary-color);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    width: 88%;
+    height: 88%;
+}
+
+
+/*Score Block Styles*/
+.upper-section, .dice-icon-eye {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.table {
+    table-layout: fixed;
+    border: 3px solid var(--primary-colro);
+    border-radius: 4px;
+    background-color: var(--background-color-light);
+    margin: 8px;
+}
+
+/*.score-block .upper-section table {
+    padding: 16px;
+}*/
+
+
+/*.score-block .upper-section table th, .score-block .lower-section table th {
+    border: 1px solid var(--primary-colro);
+    border-radius: 4px;
+    color: var(--secondary-color);
+    font-weight: var(--font-bold);
+    font-size: 24px;
+    padding: 4px;
+    margin: 4px;
+}*/
+.upper-table td, .lower-table td {
+    border: 1px solid var(--primary-colro);
+    text-align: center;
+    align-items: center;
+    color: var(--secondary-color);
+    font-weight: var(--font-bold);
+    font-size: 24px;
+    padding: 6px;
+}
+
+.upper-table td {
+    padding: 10px;
+}
+
+.points-cell {
+    width: 64px;
+}
+
+.icons, .dice-yellow {
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+}
+
+.dice-checkmark {
+    display: grid;
+}
+
+.dice-red, .checkmark {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.dice-red, .avatar  {
+    width: 88px;
+    height: 88px;
+    padding: 16px;
+}
+
+.dice-red:hover, .checkmark:hover {
+    cursor: pointer;
+}
+
+.dice-fade {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;
+    }
+    100% { opacity: 1;
+    }
+}
+
+.checkmark {
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+img.profile-icon {
+    width: 56px;
+    height: 56px;
+}
+
+.playing-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin-top: 64px;
+    margin-bottom: 160px;
+}
+
+.playing-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.buttons-area, .dice-area, .players-avatars {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.dice-area {
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.shuffel-btn, .commit-btn {
+    padding: 8px 40px;
+    justify-items: center;
+    align-items: center;
+    margin: 16px;
+}
+
+.commit-btn-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: gray;
+}
