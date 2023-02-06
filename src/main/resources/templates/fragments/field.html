@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Playing Field Fragment')}">
+
+<body>
+<div th:fragment="playing-area">
+    <div class="playing-area">
+        <div class="players-avatars">
+            <div th:replace="~{/fragments/images :: avatar-dog}"></div>
+            <div>
+                <h2 class="vs">VS</h2>
+            </div>
+            <div th:replace="~{/fragments/images :: avatar-cat}"></div>
+        </div>
+        <div class="dice-area">
+            <div class="dice-checkmark">
+                <img id="dice-1" class="dice-red" src="/media/dice/one-red.png" onclick=toggleCheckMark(0) >
+                <img id="checkmark-1" class="checkmark" src="/media/checkmark.png">
+            </div>
+            <div class="dice-checkmark">
+                <img id="dice-2" class="dice-red" src="/media/dice/one-red.png" onclick=toggleCheckMark(1)>
+                <img id="checkmark-2" class="checkmark" src="/media/checkmark.png">
+            </div>
+            <div class="dice-checkmark">
+                <img id="dice-3" class="dice-red" src="/media/dice/one-red.png" onclick=toggleCheckMark(2)>
+                <img id="checkmark-3" class="checkmark" src="/media/checkmark.png">
+            </div>
+            <div class="dice-checkmark">
+                <img id="dice-4" class="dice-red" src="/media/dice/one-red.png" onclick=toggleCheckMark(3)>
+                <img id="checkmark-4" class="checkmark" src="/media/checkmark.png">
+            </div>
+            <div class="dice-checkmark">
+                <img id="dice-5" class="dice-red" src="/media/dice/one-red.png" onclick=toggleCheckMark(4)>
+                <img id="checkmark-5" class="checkmark" src="/media/checkmark.png">
+            </div>
+        </div>
+
+ <!--       <form>
+            <input id="img-1" hidden="hidden">
+            <input>
+            <input>
+            <input>
+            <input>
+            <input>
+        </form>-->
+
+        //TODO: Javascript asynchronos function AJAX
+        <!--        <div class="dice-area">
+                    <div th:replace="~{/fragments/field :: playing-dice}"></div>
+                    <div th:replace="~{/fragments/field :: playing-dice}"></div>
+                    <div th:replace="~{/fragments/field :: playing-dice}"></div>
+                    <div th:replace="~{/fragments/field :: playing-dice}"></div>
+                    <div th:replace="~{/fragments/field :: playing-dice}"></div>
+                </div>-->
+
+        <div class="buttons-area">
+            <a th:href="@{#}">
+                <button id= "commit-btn" class="btn commit-btn .commit-btn-disabled">
+                    <img th:replace="~{/fragments/images :: correct-sign}">
+                </button>
+
+            </a>
+            <a th:href="@{#}">
+                <button id="shuffel-btn" class="btn shuffel-btn" onclick="shuffelDices()" value="3">
+                    <img th:replace="~{/fragments/images :: play-dice}">
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+<div th:fragment="playing-dice">
+    <a>
+        <div th:replace="~{/fragments/images :: dice-red-one-eye}"></div>
+    </a>
+</div>
+</body>
+</html>
