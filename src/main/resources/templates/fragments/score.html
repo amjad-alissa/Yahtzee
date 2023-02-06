@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Score Fragment')}">
+
+<body>
+<div th:fragment="score-upper-section" class="upper-section">
+    <table class="table upper-table">
+        <tbody>
+        <tr id="ones">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                </div>
+            </td>
+            <td>
+                Einser
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="twos">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                </div>
+            </td>
+            <td>
+                Zweier
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="threes">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                </div>
+            </td>
+            <td>
+                Dreier
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="fours">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                </div>
+            </td>
+            <td>
+                Vierer
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="fives">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                </div>
+            </td>
+            <td class="points-cell">
+                Fünfer
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="sixes">
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                </div>
+            </td>
+            <td>
+                Sechser
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+        </tr>
+        <tr id="total-score">
+            <td>Gesamt</td>
+            <td>
+                <div th:replace="~{/fragments/images :: right-arrow}"></div>
+            </td>
+            <td colspan="2">0</td>
+        </tr>
+        <tr id="bonus-upper-section">
+            <td>Bonus bei 63 oder mehr</td>
+            <td>plus 35</td>
+            <td colspan="2">0</td>
+        </tr>
+        <tr id="total-upper-section-with-bonus">
+            <td>Gesamt oberer Teil</td>
+            <td>
+                <div th:replace="~{/fragments/images :: right-arrow}"></div>
+            </td>
+            <td  colspan="2">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="score-lower-section" class="lower-section">
+    <table class="table lower-table">
+        <tbody>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Dreierpasch
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Viererpasch
+            </td>
+            <td >
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Full-House
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Kleine Straße
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Große Straße
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-five-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Kniffel
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="points-cell">
+                0
+            </td>
+            <td class="points-cell">
+                0
+            </td>
+            <td>
+                Chance
+            </td>
+            <td>
+                <div class="dice-icon-eye">
+                    <div th:replace="~{/fragments/images :: dice-one-eye}"></div>
+                    <div th:replace="~{/fragments/images :: dice-two-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-six-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-three-eyes}"></div>
+                    <div th:replace="~{/fragments/images :: dice-four-eyes}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                0
+            </td>
+            <td>
+                <div th:replace="~{/fragments/images :: left-arrow}"></div>
+            </td>
+            <td>
+                Gesamt unterer Teil
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                0
+            </td>
+            <td>
+                <div th:replace="~{/fragments/images :: left-arrow}"></div>
+            </td>
+            <td>
+                Gesamt oberer Teil
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                0
+            </td>
+            <td>
+                <div th:replace="~{/fragments/images :: left-arrow}"></div>
+            </td>
+            <td>
+                Ergebnis
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
