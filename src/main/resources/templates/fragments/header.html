@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Header Fragment')}">
+    <title></title>
+<body>
+
+<!--Header Fragment-->
+<header th:fragment="header" th:remove="tag">
+    <div class="header-content">
+        <div class="logo-container">
+            <a class="logo-text" th:href="@{/}">
+                <img th:replace="~{/fragments/images :: logo}">
+                <span>Kniffel</span>
+            </a>
+        </div>
+        <div class="nav-container">
+            <nav class="nav-bar">
+                <ul class="nav-links">
+                    <li><a id="home-link" th:href="@{/}">Home</a></li>
+                    <li><a id="rules-link" th:href="@{/rules}">Regeln</a></li>
+                    <li><a id="about-link" th:href="@{/more}">Mehr</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div th:replace="~{/fragments/header :: login-register}"></div>
+    </div>
+</header>
+
+<!--login & signup buttons fragment-->
+<div th:fragment="login-register" class="login-container">
+    <a th:href="@{#}">
+        <div th:replace="~{/fragments/images :: profile-icon}"></div>
+    </a>
+</div>
+
+<!--Profile details fragment-->
+<div th:fragment="profile-details">
+    <a class="logo-text" th:href="@{#}">
+        <img th:replace="~{/fragments/images :: profile-icon}">
+
+    </a>
+</div>
+</body>
+</html>
