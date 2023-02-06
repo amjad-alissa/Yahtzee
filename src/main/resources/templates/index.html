@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Kniffel')}">
+</head>
+<body>
+<div class="container index-container">
+    <div th:replace="~{/fragments/header :: header}"></div>
+    <div class="playing-container">
+        <div th:replace="~{/fragments/score :: score-upper-section}"></div>
+        <div th:replace="~{/fragments/field :: playing-area}"></div>
+        <div th:replace="~{/fragments/score :: score-lower-section}"></div>
+    </div>
+    <div th:replace="~{/fragments/footer :: footer}"></div>
+</div>
+
+</body>
+</html>

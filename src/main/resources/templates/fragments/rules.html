@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{head :: head(viewName='Score Fragment')}">
+<body>
+<div th:fragment= "rules" class="container">
+    <div class="rules-container">
+        <div class="rules-content">
+            <h2 class="rules-subtitle">Die Regeln für Kniffel - so gehts los: </h2>
+            <p class="rules-paragraph">Für Kniffel werden mindestens zwei Spieler benötigt. Nach oben ist der Anzahl der
+                Spieler keine Grenze gesetzt.</p>
+
+            <img th:replace="~{/fragments/images :: kniffel-img}">
+
+            <ul class="rules-list">
+                <li class="rules-list-element">Beim Kniffel werden fünf Würfel mit einem Becher geworfen. Jeder Spieler hat
+                    drei Würfe.
+                </li>
+                <li class="rules-list-element">In diesen drei Würfen versucht er, möglichst viele Punkte für eines der im
+                    zweiten Abschnitt beschrieben Felder zu erzielen. Dabei kann er bei den ersten beiden Würfen Würfel mit
+                    passender Augenzahl auf die Seite legen und muss diese nicht noch einmal würfeln.
+                </li>
+                <li class="rules-list-element">Nach dem dritten Wurf müssen Sie ein Feld auf Ihrem Spielzettel vom
+                    Kniffel-Block ausfüllen. Idealerweise natürlich das, das Ihnen am meisten Punkte bringt. Eingetragen
+                    werden muss immer etwas. Haben Sie beispielsweise keine Straße erreicht, können Sie dafür in einem
+                    anderen Feld 0 Punkte eintragen.
+                </li>
+                <li class="rules-list-element">Danach ist der im Uhrzeigersinn nächste Spieler an der Reihe und würfelt
+                    seinerseits dreimal.
+                </li>
+                <li class="rules-list-element">Das Spiel ist zu Ende, wenn jeder Spieler alle Felder auf seiner Karte
+                    ausgefüllt hat. Wie bei anderen Würfelspielen auch, werden zum Schluss die Punkte zusammengezählt:
+                </li>
+                <li class="rules-list-element">Zuerst addieren Sie die Punkte im oberen Bereich, mit den Einern bis zu den
+                    Sechsern. Wer hier mindestens 65 Punkte erreicht hat, bekommt 35 Extrapunkte.
+                </li>
+                <li class="rules-list-element">Rechnen Sie anschließend die Punkte im unteren Spielabschnitt zusammen und
+                    ermitteln Sie zum Schluss die Gesamtsumme. Die Runde gewonnen hat, wer die meisten Punkte erzielt hat.
+                </li>
+            </ul>
+            <h2 class="rules-subtitle">Diese Kombinationen müssen Sie erwürfeln</h2>
+            <p class="rules-paragraph">Jeder Mitspieler bekommt einen Spielzettel vom Kniffel-Block, auf dem er die
+                verschiedenen Punkte eintragen kann. Insgesamt gilt es, 13 Felder auszufüllen.
+
+                Es wird ein Spieler bestimmt, der für die anderen Spiele die Punkte in den Kniffel-Block einträgt. Der Reihe
+                nach wird gewürfelt. Wer die höchste Zahl hat, beginnt. Das Spiel kann losgehen, nachdem die Namen der
+                Spieler in der obersten Zeile des Kniffel-Blocks notiert sind.
+            </p>
+
+            <img th:replace="~{/fragments/images :: kniffel-rules}">
+
+            <ul>
+                <li class="rules-list-element">Bei den 1ern werden alle gewürfelten Einser addiert.</li>
+                <li class="rules-list-element">Bei den 2ern werden alle gewürfelten Zweier addiert.</li>
+                <li class="rules-list-element">Bei den 3er addieren Sie alle gewürfelten Dreier.</li>
+                <li class="rules-list-element">Und bei den 4er werden alle gewürfelten Vierer zusammengerechnet.</li>
+                <li class="rules-list-element">Im 5er-Feld notieren Sie die Summe aller gewürfelten Fünfer.</li>
+                <li class="rules-list-element">Und im letzten Feld des oberen Abschnitts für die 6er zählen Sie alle
+                    gewürfelten Sechser zusammen.
+                </li>
+                <li class="rules-list-element">Im unteren Abschnitt finden Sie weitere Spielfelder, bei denen Sie Punkte
+                    eintragen können. Hier müssen Sie bestimmte Würfelkombinationen erzielen.
+                </li>
+                <li class="rules-list-element">Für den Dreierpasch brauchen Sie mindestens dreimal dieselbe Zahl. Alle
+                    Augen, auch die Nicht-Dreier- werden anschließend zusammengezählt.
+                </li>
+                <li class="rules-list-element">Beim Viererpasch brauchen Sie mindestens viermal dieselbe Zahl und addieren
+                    anschließend auch die Augen des fünften Würfels.
+                </li>
+                <li class="rules-list-element">Beim Full-House zählen je dreimal und zweimal gleiche Zahlen. 25 Punkte
+                    werden in das Feld eintragen
+                </li>
+                <li class="rules-list-element">Die kleine Straße benötigt entweder die Würfelkombination von 1-4, 2-5 oder
+                    3-6. 30 Punkte werden in das Feld eintragen, wenn Sie diese erwürfeln.
+                </li>
+                <li class="rules-list-element">Für die große Straße brauchen Sie die Würfelkombination von 1-5 oder 2-6,
+                    dann können Sie 40 Punkte im Spielfeld notieren.
+                </li>
+                <li class="rules-list-element">Der Kniffel ist das höchst gepunktete Spielfeld. Hier müssen Sie fünfmal die
+                    gleiche Zahl erwürfeln. 50 Punkte können Sie dann in das Feld eingetragen.
+                </li>
+                <li class="rules-list-element">Die Chance zählt alle Augen querbeet. Hier muss nichts zusammenpassen.
+                    Deswegen ist es gut, diese aufzusparen. So brauchen Sie keine 0 Punkte im Spielblock eintragen, falls
+                    Sie keines der anderen Spielfelder erwürfeln konnten.
+                </li>
+                <li class="rules-list-element">Haben Sie alle Punkte addiert, können Sie diese zusätzlich auf der Rückseite
+                    eintragen. So können Sie am Ende des Spiels auch einen Gesamtsieger küren.
+                </li>
+                <li class="rules-list-element">Schaffen Sie es, mehr als einen Kniffel in einer Runde zu erwürfeln, werden
+                    auf der Rückseite dafür auch jeweils 100 Extrapunkte notiert.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
