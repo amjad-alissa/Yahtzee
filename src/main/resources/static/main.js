@@ -14,7 +14,7 @@ function resetTransition() {
 
 //Shuffle the dice and set the images accordingly
 function shuffelDices() {
-    // if (number_of_shuffles > 0) {
+/*    // if (number_of_shuffles > 0) {
     //     number_of_shuffles -= 1;
     //     this.setAttribute("value", "" + number_of_shuffles);
 
@@ -28,21 +28,33 @@ function shuffelDices() {
             img.classList.add("dice-fade");
             img.addEventListener("animationend", resetTransition);
             selected_dice_values[i - 1] = random_index;
-
         }
     }
-    // }
+    // }*/
+
+/*    $.ajax({
+        type : "POST",
+        url : "/randomShuffel",
+        data : {
+            selectedDices: selected_dice //notice that "myArray" matches the value for @RequestParam
+                       //on the Java side
+        }/!*,
+        success : function(response) {
+            // do something ...
+        },
+        error : function(e) {
+            alert('Error: ' + e);
+        }*!/
+    });*/
 }
 
 //Toggle the green checkmark beside the red dice
 function toggleCheckMark(index) {
-    let checkMarkId = "checkmark-" + (index + 1);
+    let checkMarkId = "checkmark-" + index;
     let checkMark = document.getElementById(checkMarkId);
-    if (checkMark.style.display === "none") {
-        checkMark.style.display = "block";
-        selected_dice[index] = true;
-    } else {
-        checkMark.style.display = "none";
-        selected_dice[index] = false;
+    checkMark.classList.toggle("checkmark-selected");
+    if(checkMark.classList.contains("checkmark-selected")) {
+        selected_dice[index - 1] = true;
     }
 }
+
