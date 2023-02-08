@@ -2,6 +2,7 @@
 <html lang="en">
 <head th:replace="~{/fragments/head :: head(viewName='Playing Field Fragment')}">
 
+    <title></title>
 <body>
 <div th:fragment="playing-area">
     <div class="playing-area">
@@ -13,22 +14,23 @@
             <div th:replace="~{/fragments/images :: avatar-cat}"></div>
         </div>
         <div class="shuffle-dices-container">
-            <div class="random-dice-container" th:each="randomDice : ${radomDices}">
-                <img th:id="${randomDice.id}" class="dice-red" th:src="${randomDice.dice.path}" th:onclick="toggleCheckMark(this.getAttribute('id'))" >
-                <img th:class="${'icons checkmark-hidden ' + randomDice.checkMarkSelected}" th:id="${'checkmark-' + randomDice.id}" th:src="@{/media/checkmark.png}">
+            <!-- iStat is a Status Variable enables a useful mechanism to keep track of the iteration process -->
+            <div class="random-dice-container" th:each="iconSource, iStat : ${iconSources}">
+                <img th:id="${(iStat.index + 1)}" class="dice-red" th:src="${iconSource}" onclick="toggleCheckMark(this.id)" alt="dice-icon" src="">
+                <img class="icons checkmark-hidden" th:id="${'checkmark-' + (iStat.index + 1)}" th:src="@{/media/checkmark.png}" alt="checkmark" src="">
             </div>
         </div>
 
         <div class="buttons-area">
             <a th:href="@{#}">
                 <button id= "commit-btn" class="btn commit-btn .commit-btn-disabled">
-                    <img th:replace="~{/fragments/images :: correct-sign}">
+                    <img th:replace="~{/fragments/images :: correct-sign}" alt="commit-sign" src="">
                 </button>
 
             </a>
-            <a th:href="@{/randomShuffel}" th:action="@{/randomShuffel}" th:object="${selectedDices}" methods="post">
-                <button id="shuffel-btn" class="btn shuffel-btn" value="3">
-                    <img th:replace="~{/fragments/images :: play-dice}">
+            <a>
+                <button id="shuffel-btn" class="btn shuffel-btn" value="3" onclick="shuffelDices()">
+                    <img th:replace="~{/fragments/images :: play-dice}" alt="shuffel dices" src="">
                 </button>
             </a>
         </div>
