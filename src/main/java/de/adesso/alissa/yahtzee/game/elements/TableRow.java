@@ -1,4 +1,4 @@
-package de.adesso.alissa.yahtzee.elements;
+package de.adesso.alissa.yahtzee.game.elements;
 
 import java.util.ArrayList;
 
