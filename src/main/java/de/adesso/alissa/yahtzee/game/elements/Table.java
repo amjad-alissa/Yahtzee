@@ -1,4 +1,4 @@
-package de.adesso.alissa.yahtzee.elements;
+package de.adesso.alissa.yahtzee.game.elements;
 
 import java.util.ArrayList;
 
@@ -64,7 +64,7 @@ public class Table {
         threeSameDiceIcons.add(DICE_ONE_PNG);
         threeSameDiceIcons.add(DICE_ONE_PNG);
         threeSameDiceIcons.add(DICE_ONE_PNG);
-        final TableRow threeSame = new TableRow(7, threeSameDiceIcons, "Dreierpasch");
+        final TableRow threeSame = new TableRow(1, threeSameDiceIcons, "Dreierpasch");
         this.lowerSection.add(threeSame);
 
         // Viererpasch
@@ -73,7 +73,7 @@ public class Table {
         fourSameDiceIcons.add(DICE_TWO_PNG);
         fourSameDiceIcons.add(DICE_TWO_PNG);
         fourSameDiceIcons.add(DICE_TWO_PNG);
-        final TableRow fourSame = new TableRow(8, fourSameDiceIcons, "Viererpasch");
+        final TableRow fourSame = new TableRow(2, fourSameDiceIcons, "Viererpasch");
         this.lowerSection.add(fourSame);
 
         //Full-House
@@ -82,8 +82,8 @@ public class Table {
         fullHouseDiceIcons.add(DICE_ONE_PNG);
         fullHouseDiceIcons.add(DICE_ONE_PNG);
         fullHouseDiceIcons.add(DICE_TWO_PNG);
-        fourSameDiceIcons.add(DICE_TWO_PNG);
-        final TableRow fullHouse = new TableRow(9, fullHouseDiceIcons, "Full-Haus");
+        fullHouseDiceIcons.add(DICE_TWO_PNG);
+        final TableRow fullHouse = new TableRow(3, fullHouseDiceIcons, "Full-Haus");
         this.lowerSection.add(fullHouse);
 
         //Kleine-Strasse
@@ -92,7 +92,7 @@ public class Table {
         smallStreetDiceIcons.add(DICE_TWO_PNG);
         smallStreetDiceIcons.add(DICE_THREE_PNG);
         smallStreetDiceIcons.add(DICE_FOUR_PNG);
-        final TableRow smallStreet = new TableRow(10, smallStreetDiceIcons, "Kleine Straße");
+        final TableRow smallStreet = new TableRow(4, smallStreetDiceIcons, "Kleine Straße");
         this.lowerSection.add(smallStreet);
 
         //Große-Strasse
@@ -102,7 +102,7 @@ public class Table {
         bigStreetDiceIcons.add(DICE_THREE_PNG);
         bigStreetDiceIcons.add(DICE_FOUR_PNG);
         bigStreetDiceIcons.add(DIC_FIVE_PNG);
-        final TableRow bigStreet = new TableRow(11, bigStreetDiceIcons, "Große Straße");
+        final TableRow bigStreet = new TableRow(5, bigStreetDiceIcons, "Große Straße");
         this.lowerSection.add(bigStreet);
 
         //Kniffel
@@ -112,7 +112,7 @@ public class Table {
         yahtzeeDiceIcons.add(DICE_THREE_PNG);
         yahtzeeDiceIcons.add(DICE_THREE_PNG);
         yahtzeeDiceIcons.add(DICE_THREE_PNG);
-        final TableRow yahtzee = new TableRow(12, yahtzeeDiceIcons, "Kniffel");
+        final TableRow yahtzee = new TableRow(6, yahtzeeDiceIcons, "Kniffel");
         this.lowerSection.add(yahtzee);
 
         //Chance
@@ -122,7 +122,7 @@ public class Table {
         chanceDiceIcons.add(DIC_FIVE_PNG);
         chanceDiceIcons.add(DICE_SIX_PNG);
         chanceDiceIcons.add(DICE_TWO_PNG);
-        final TableRow chance = new TableRow(13, chanceDiceIcons, "Chance");
+        final TableRow chance = new TableRow(7, chanceDiceIcons, "Chance");
         this.lowerSection.add(chance);
     }
 
