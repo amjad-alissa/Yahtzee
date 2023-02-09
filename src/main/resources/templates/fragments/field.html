@@ -16,23 +16,20 @@
         <div class="shuffle-dices-container">
             <!-- iStat is a Status Variable enables a useful mechanism to keep track of the iteration process -->
             <div class="random-dice-container" th:each="iconSource, iStat : ${iconSources}">
-                <img th:id="${(iStat.index + 1)}" class="dice-red" th:src="${iconSource}" onclick="toggleCheckMark(this.id)" alt="dice-icon" src="">
-                <img class="icons checkmark-hidden" th:id="${'checkmark-' + (iStat.index + 1)}" th:src="@{/media/checkmark.png}" alt="checkmark" src="">
+                <img th:id="${(iStat.index + 1)}" class="dice-red" th:src="${iconSource}"
+                     onclick="toggleCheckMark(this.id)" alt="dice-icon" src="">
+                <img class="icons checkmark-hidden" th:id="${'checkmark-' + (iStat.index + 1)}"
+                     th:src="@{/media/checkmark.png}" alt="checkmark" src="">
             </div>
         </div>
 
         <div class="buttons-area">
-            <a th:href="@{#}">
-                <button id= "commit-btn" class="btn commit-btn .commit-btn-disabled">
-                    <img th:replace="~{/fragments/images :: correct-sign}" alt="commit-sign" src="">
-                </button>
-
-            </a>
-            <a>
-                <button id="shuffel-btn" class="btn shuffel-btn" value="3" onclick="shuffelDices()">
-                    <img th:replace="~{/fragments/images :: play-dice}" alt="shuffel dices" src="">
-                </button>
-            </a>
+            <button id="commit-btn" class="btn commit-btn commit-btn-disabled">
+                <img th:replace="~{/fragments/images :: correct-sign}" alt="commit-sign" src="">
+            </button>
+            <button id="shuffel-btn" class="btn shuffel-btn" value="3" onclick="shuffelDices()">
+                <img th:replace="~{/fragments/images :: play-dice}" alt="shuffel dices" src="">
+            </button>
         </div>
     </div>
 </div>
