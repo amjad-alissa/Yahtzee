@@ -1,4 +1,11 @@
 let selected_dice = [false, false, false, false, false];
+let selected_row = null;
+let shuffel_count = 3;
+
+$(document).onload (function () {
+    let shuffel_button = document.getElementById("shuffel-btn");
+    shuffel_button.setAttribute("value", "" + shuffel_count);
+})
 
 
 function resetTransition() {
@@ -49,8 +56,59 @@ function shuffelDices() {
     })
 }
 
-/*function commitShuffel() {
-    $(document).ready(function () {
+function highlightSelectedRow(row) {
+    let upper_table = document.getElementById("upper-table");
+    let lower_table = document.getElementById("lower-table");
+
+    //remove the highlight of the other rows which are nor yet selected
+    // for the upper table
+    removeHighlightFromElements(upper_table);
+
+    //remove the highlight of the other rows which are nor yet selected
+    // for the lower table
+    removeHighlightFromElements(lower_table);
+
+    // highlight the clicked row
+    if (!row.classList.contains("row-selected")) {
+        selected_row = row;
+        row.classList.toggle("row-highlighted");
+
+        //highlight the cells for this row
+        $( "td", row).each(function () {
+                this.classList.toggle("cell-highlighted");
+        })
+    }
+
+
+    // alert(rowId);
+}
+
+function removeHighlightFromElements(table) {
+    $("tr", table).each(function () {
+        let row = this;
+        if (!row.classList.contains("row-selected") && row.classList.contains("row-highlighted")) {
+            row.classList.remove("row-highlighted");
+            $( "td", row).each(function () {
+                this.classList.toggle("cell-highlighted");
+            })
+        }
+    })
+}
+
+// add styles to the selected row and make it unselectable
+function styleSelectedRow() {
+    selected_row.classList.add("row-selected");
+    $( "td", selected_row).each(function () {
+        this.classList.toggle("cell-selected");
+    })
+}
+
+function commitShuffel() {
+    styleSelectedRow();
+
+
+
+/*    $(document).ready(function () {
         $("#commit-btn").click( function () {
             $.ajax({
                 url:"/player/commitShuffel",
@@ -68,6 +126,6 @@ function shuffelDices() {
                 }
             });
         });
-    });
-}*/
+    });*/
+}
 

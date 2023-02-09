@@ -4,72 +4,72 @@
     <title></title>
 <body>
 <div th:fragment="score-upper-section" class="upper-section">
-    <table class="table upper-table">
+    <table id="upper-table" class="table upper-table">
         <tbody>
-        <tr th:each="tableRow : ${upperSection}">
-            <td hidden="hidden" th:text="${tableRow.id}"></td>
-            <td class="yellow-dice-icon-container">
+        <tr th:each="tableRow : ${upperSection}" th:id="${tableRow.label}" class="upper-score-table-row">
+            <td hidden="hidden" th:text="${tableRow.id}" class="upper-score-table-cell"></td>
+            <td class="yellow-dice-icon-container upper-score-table-cell" >
                 <img th:each="diceIcon : ${tableRow.diceIcons}" class="dice-yellow" th:src="${diceIcon}" alt="dice-yellow" src="">
             </td>
-            <td th:text="${tableRow.label}">
+            <td th:text="${tableRow.label}" class="upper-score-table-cell score-label" onclick="highlightSelectedRow(this.parentNode)">
             </td>
-            <td th:id="${'upper-score-cell-' + tableRow.id}" class="points-cell" th:text="${tableRow.score}"></td>
-            <td th:id="${'upper-predict-cell-' + tableRow.id}" class="points-cell" th:text="${tableRow.predictedScore}"></td>
+            <td th:id="${'upper-score-cell-' + tableRow.id}" class="points-cell upper-score-table-cell" th:text="${tableRow.score}"></td>
+            <td th:id="${'upper-predict-cell-' + tableRow.id}" class="points-cell upper-score-table-cell" th:text="${tableRow.predictedScore}"></td>
         </tr>
-        <tr id="total-score">
-            <td>Gesamt</td>
-            <td>
+        <tr id="total-score" class="upper-score-table-row">
+            <td class="upper-score-table-cell">Gesamt</td>
+            <td class="upper-score-table-cell">
                 <div th:replace="~{/fragments/images :: right-arrow}"></div>
             </td>
-            <td id="upper-score-cell-7" colspan="2">0</td>
+            <td class="upper-score-table-cell" id="upper-score-cell-7" colspan="2">0</td>
         </tr>
-        <tr id="bonus-upper-section">
-            <td>Bonus bei 63 oder mehr</td>
-            <td>plus 35</td>
-            <td id="upper-score-cell-8" colspan="2">0</td>
+        <tr id="bonus-upper-section" class="upper-score-table-row">
+            <td class="upper-score-table-cell" >Bonus bei 63 oder mehr</td>
+            <td class="upper-score-table-cell">plus 35</td>
+            <td class="upper-score-table-cell" id="upper-score-cell-8" colspan="2">0</td>
         </tr>
-        <tr id="total-upper-section-with-bonus">
-            <td>Gesamt oberer Teil</td>
-            <td>
+        <tr id="total-upper-section-with-bonus" class="upper-score-table-row">
+            <td class="upper-score-table-cell">Gesamt oberer Teil</td>
+            <td class="upper-score-table-cell">
                 <div th:replace="~{/fragments/images :: right-arrow}"></div>
             </td>
-            <td id="upper-score-cell-10" colspan="2">0</td>
+            <td class="upper-score-table-cell" id="upper-score-cell-10" colspan="2">0</td>
         </tr>
         </tbody>
     </table>
 </div>
 <div th:fragment="score-lower-section" class="lower-section">
-    <table class="table lower-table">
+    <table id="lower-table" class="table lower-table">
         <tbody>
-        <tr th:each="tableRow : ${lowerSection}">
-            <td th:id="${'lower-predict-cell-' + tableRow.id}" class="points-cell" th:text="${tableRow.predictedScore}"></td>
-            <td th:id="${'lower-score-cell-' + tableRow.id}" class="points-cell" th:text="${tableRow.score}"></td>
-            <td th:text="${tableRow.label}"></td>
-            <td class="yellow-dice-icon-container">
+        <tr th:each="tableRow : ${lowerSection}" class="lower-score-table-row">
+            <td th:id="${'lower-predict-cell-' + tableRow.id}" class="points-cell lower-score-table-cell" th:text="${tableRow.predictedScore}"></td>
+            <td th:id="${'lower-score-cell-' + tableRow.id}" class="points-cell lower-score-table-cell" th:text="${tableRow.score}"></td>
+            <td th:text="${tableRow.label}" class="lower-score-table-cell score-label" onclick="highlightSelectedRow(this.parentNode)"></td>
+            <td class="yellow-dice-icon-container lower-score-table-cell">
                 <img th:each="diceIcon : ${tableRow.diceIcons}" class="dice-yellow" th:src="${diceIcon}" alt="dice-yellow" src="">
             </td>
-            <td hidden="hidden" th:text="${tableRow.id}"></td>
+            <td hidden="hidden" th:text="${tableRow.id}" class="lower-score-table-cell" ></td>
         </tr>
-        <tr>
-            <td colspan="2">0</td>
-            <td>
+        <tr class="lower-score-table-row">
+            <td colspan="2" class="lower-score-table-cell">0</td>
+            <td class="lower-score-table-cell">
                 <div th:replace="~{/fragments/images :: left-arrow}"></div>
             </td>
-            <td>Gesamt unterer Teil</td>
+            <td class="lower-score-table-cell">Gesamt unterer Teil</td>
         </tr>
-        <tr>
-            <td colspan="2">0</td>
-            <td>
+        <tr class="lower-score-table-row">
+            <td colspan="2" class="lower-score-table-cell">0</td>
+            <td class="lower-score-table-cell">
                 <div th:replace="~{/fragments/images :: left-arrow}"></div>
             </td>
-            <td>Gesamt oberer Teil</td>
+            <td class="lower-score-table-cell">Gesamt oberer Teil</td>
         </tr>
-        <tr>
-            <td colspan="2">0</td>
-            <td>
+        <tr class="lower-score-table-row">
+            <td colspan="2" class="lower-score-table-cell">0</td>
+            <td class="lower-score-table-cell">
                 <div th:replace="~{/fragments/images :: left-arrow}"></div>
             </td>
-            <td>Ergebnis</td>
+            <td class="lower-score-table-cell">Ergebnis</td>
         </tr>
         </tbody>
     </table>

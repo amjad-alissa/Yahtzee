@@ -3,8 +3,10 @@
     --primary-colro: #c45551;
     --element-disabled: #d37f7c;
     --secondary-color: #2a9d8f;
+    --secondary-color-shade: #72d9cd;
     --background-color: #3d405b;
     --background-color-light: #4e516a;
+    --background-color-shade: #767aa3;
     --font-colro: #879e82;
     --main-font: 'Poppins', sans-serif;
     --font-size-big: 32px;
@@ -182,7 +184,7 @@ div .upper-section, div .lower-section {
     min-width: max-content;
 }
 
-.upper-table td, .lower-table td {
+.upper-score-table-cell, .lower-score-table-cell {
     border: 2px solid var(--primary-colro);
     text-align: center;
     align-items: center;
@@ -192,8 +194,31 @@ div .upper-section, div .lower-section {
     padding: 6px;
 }
 
-.upper-table td {
+.upper-score-table-cell {
     padding: 10px;
+}
+
+.row-highlighted {
+    background-color: var(--background-color-shade);
+}
+
+.cell-highlighted {
+    color: var(--secondary-color-shade);
+}
+
+.row-selected {
+
+}
+
+.cell-selected {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.score-label:hover {
+    cursor: pointer;
+    color: var(--secondary-color-shade);
+    background-color: var(--background-color-shade);
 }
 
 .points-cell {
