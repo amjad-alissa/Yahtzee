@@ -1,6 +1,7 @@
 /*define constant variables for the colors, sizes and fonts*/
 :root {
     --primary-colro: #c45551;
+    --element-disabled: #d37f7c;
     --secondary-color: #2a9d8f;
     --background-color: #3d405b;
     --background-color-light: #4e516a;
@@ -84,21 +85,6 @@ body {
 .nav-links li:active, .nav-links li a:active {
     background-color: var(--background-color);
     color: var(--secondary-color);
-}
-
-.btn, .login-btn, .signup-btn, .shuffel-btn {
-    font-family: var(--main-font);
-    font-weight: var(--font-bold);
-    font-size: var(--font-size-medium);
-    padding: 8px 16px;
-    margin: 4px;
-    background-color: var(--primary-colro);
-    border: none;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-    align-items: center;
-    text-align: center;
 }
 
 .btn:hover, .login-btn:hover, .signup-btn:hover {
@@ -196,20 +182,6 @@ div .upper-section, div .lower-section {
     min-width: max-content;
 }
 
-/*.score-block .upper-section table {
-    padding: 16px;
-}*/
-
-
-/*.score-block .upper-section table th, .score-block .lower-section table th {
-    border: 1px solid var(--primary-colro);
-    border-radius: 4px;
-    color: var(--secondary-color);
-    font-weight: var(--font-bold);
-    font-size: 24px;
-    padding: 4px;
-    margin: 4px;
-}*/
 .upper-table td, .lower-table td {
     border: 2px solid var(--primary-colro);
     text-align: center;
@@ -318,6 +290,21 @@ img.profile-icon {
     margin-top: 24px;
 }
 
+.btn {
+    font-family: var(--main-font);
+    font-weight: var(--font-bold);
+    font-size: var(--font-size-medium);
+    padding: 8px 16px;
+    margin: 4px;
+    background-color: var(--primary-colro);
+    border: 3px solid #5f2220;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    align-items: center;
+    text-align: center;
+}
+
 .shuffel-btn, .commit-btn {
     padding: 8px 40px;
     justify-items: center;
@@ -325,8 +312,14 @@ img.profile-icon {
     margin: 16px;
 }
 
+.shuffel-btn:hover, .commit-btn:hover {
+    border-color: var(--secondary-color);
+}
+
 .commit-btn-disabled {
     cursor: not-allowed;
-    pointer-events: none;
-    background-color: gray;
+}
+
+.commit-btn-disabled:hover {
+    border-color: #5f2220;
 }
