@@ -35,7 +35,9 @@ public enum Yahtzee {
     /**
      * Upper section rows.
      */
-    UPPER_SECTION_ROWS(6);
+    UPPER_SECTION_ROWS(6),
+
+    POINTS_LIMIT_FOR_BONUS(63);
 
     private final int value;
     Yahtzee(final int value) {
