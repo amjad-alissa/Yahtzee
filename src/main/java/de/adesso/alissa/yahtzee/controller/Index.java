@@ -1,9 +1,12 @@
 package de.adesso.alissa.yahtzee.controller;
 
+import de.adesso.alissa.yahtzee.game.CommitResponse;
+import de.adesso.alissa.yahtzee.game.Player;
 import de.adesso.alissa.yahtzee.game.business.PointsCalculator;
 import de.adesso.alissa.yahtzee.game.elements.DiceSet;
 import de.adesso.alissa.yahtzee.game.business.ResponseData;
 import de.adesso.alissa.yahtzee.game.elements.Table;
+import de.adesso.alissa.yahtzee.service.ScoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,10 @@ public class Index {
     private final DiceSet diceSet = DiceSet.getInstance();
 
     private final PointsCalculator pointsCalculator = PointsCalculator.getInstance();
+
+    private ScoreService scoreService = new ScoreService();
+
+    private final Player player = new Player("Amjad", "MMO");
 
     @GetMapping("/")
     public String getIndexView(Model model) {
@@ -48,4 +55,10 @@ public class Index {
 
         return responseData;
     }
+
+/*    @GetMapping("/player/commitShuffel")
+    public @ResponseBody CommitResponse commitDecision(@RequestParam String selectedRow) {
+        scoreService.processDecision(player, )
+        return
+    }*/
 }

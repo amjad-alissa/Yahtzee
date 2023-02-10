@@ -335,10 +335,12 @@ img.profile-icon {
     justify-items: center;
     align-items: center;
     margin: 16px;
+    opacity: 80%;
 }
 
 .shuffel-btn:hover, .commit-btn:hover {
     border-color: var(--secondary-color);
+    opacity: 100%;
 }
 
 .commit-btn-disabled {

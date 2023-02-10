@@ -108,7 +108,7 @@ function commitShuffel() {
 
 
 
-/*    $(document).ready(function () {
+    /*$(document).ready(function () {
         $("#commit-btn").click( function () {
             $.ajax({
                 url:"/player/commitShuffel",
