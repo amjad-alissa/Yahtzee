@@ -41,45 +41,6 @@ public class DiceSet {
     }
 
     /**
-     * Get values of the current set of dices.
-     *
-     * @return int array with the corresponding values
-     */
-    public int[] getDiceValues() {
-        int[] diceValues = new int[Yahtzee.NUMBER_OF_DICES.getValue()];
-        for (int index = 0; index < this.dices.length; index++) {
-            diceValues[index] = this.dices[index].getValue();
-        }
-        return diceValues;
-    }
-
-    /**
-     * Get icon's source of the current set of dices.
-     *
-     * @return array with the corresponding icon's source
-     */
-    public String[] getDiceSourceImages() {
-        String[] diceIconsSources = new String[Yahtzee.NUMBER_OF_DICES.getValue()];
-        for (int index = 0; index < this.dices.length; index++) {
-            diceIconsSources[index] = this.dices[index].getIconSource();
-        }
-        return diceIconsSources;
-    }
-
-    /**
-     * Update selected dices based on the array passed from AJAX.
-     *
-     * @param selectedDices passed from AJAX with boolean values for each dice in the set, whether dice was selected
-     */
-    public void updateSelectedDices(final boolean[] selectedDices) {
-        for (int index = 0; index < this.dices.length; index++) {
-            if (!selectedDices[index]) {
-                this.dices[index] = DiceEnum.randomDice();
-            }
-        }
-    }
-
-    /**
      * Get dices [ ].
      *
      * @return the dice [ ]
