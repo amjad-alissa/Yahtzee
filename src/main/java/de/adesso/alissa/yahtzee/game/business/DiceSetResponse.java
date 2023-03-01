@@ -3,17 +3,12 @@ package de.adesso.alissa.yahtzee.game.business;
 /**
  * The type Response data.
  */
-public class ResponseData {
+public class DiceSetResponse {
     private int[] pointsUpperSection;
     private int[] pointsLowerSection;
-    private String[] diceSourceImages;
+    private String[] diceIconSource;
 
-    /**
-     * Instantiates a new Response data.
-     */
-    public ResponseData() {
-    }
-
+    
     /**
      * Get points upper section int [ ].
      *
@@ -55,16 +50,16 @@ public class ResponseData {
      *
      * @return the string [ ]
      */
-    public String[] getDiceSourceImages() {
-        return diceSourceImages;
+    public String[] getDiceIconSource() {
+        return diceIconSource;
     }
 
     /**
      * Sets dice source images.
      *
-     * @param diceSourceImages the dice source images
+     * @param diceIconSource the dice source images
      */
-    public void setDiceSourceImages(String[] diceSourceImages) {
-        this.diceSourceImages = diceSourceImages;
+    public void setDiceIconSource(String[] diceIconSource) {
+        this.diceIconSource = diceIconSource;
     }
 }
