@@ -9,7 +9,7 @@
     <div class="header-content">
         <div class="logo-container">
             <a class="logo-text" th:href="@{/}">
-                <img th:replace="~{/fragments/images :: logo}">
+                <img th:replace="~{/fragments/images :: logo}" alt="" src="">
                 <span>Kniffel</span>
             </a>
         </div>
@@ -17,8 +17,9 @@
             <nav class="nav-bar">
                 <ul class="nav-links">
                     <li><a id="home-link" th:href="@{/}">Home</a></li>
-                    <li><a id="rules-link" th:href="@{/rules}">Regeln</a></li>
-                    <li><a id="about-link" th:href="@{/more}">Mehr</a></li>
+<!--                    <li><a id="game-link"  th:href="@{/game}">Game</a></li>-->
+                    <li><a id="rules-link" th:href="@{/rules}">Rules</a></li>
+                    <li><a id="about-link" th:href="@{/more}">More</a></li>
                 </ul>
             </nav>
         </div>
@@ -36,7 +37,7 @@
 <!--Profile details fragment-->
 <div th:fragment="profile-details">
     <a class="logo-text" th:href="@{#}">
-        <img th:replace="~{/fragments/images :: profile-icon}">
+        <img th:replace="~{/fragments/images :: profile-icon}" alt="" src="">
 
     </a>
 </div>
