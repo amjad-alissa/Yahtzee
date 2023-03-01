@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Welcome Fragment')}">
+
+  <title></title>
+<body>
+  <div th:fragment="welcome">
+    <div id="welcome-container" class="welcome-container">
+      <div class="welcome-text-container">
+        <h2 class="welcome-title">Welcome to the Dice game Yahtzee</h2>
+        <p class="welcome-para"> The objective of YAHTZEE is to get as many points as possible by rolling five dice and getting certain combinations of dice.
+            The number of players can range from 2 to 8 players. Have Fun :)
+        </p>
+        <button class="btn" onclick="Yahtzee.showAddPlayersForm()">Start Game</button>
+      </div>
+      <img class="yahtzee-img" th:replace="~{/fragments/images :: yahtzee-img}" alt="" src="">
+    </div>
+  </div>
+</body>
+</html>
