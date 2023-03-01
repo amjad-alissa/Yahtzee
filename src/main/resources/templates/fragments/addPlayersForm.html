@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head :: head(viewName='Add Players Form Fragment')}">
+
+    <title></title>
+<body>
+<div th:fragment="add-players-form" >
+    <div id="add-players-form" class="hidden">
+        <h2 id="form-title">Enter The names of the players: </h2>
+        <div class="form-container">
+            <div th:replace="~{fragments/addPlayersForm :: userInput(1)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(2)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(3)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(4)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(5)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(6)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(7)}"></div>
+            <div th:replace="~{fragments/addPlayersForm :: userInput(8)}"></div>
+
+<!--            This is needed to store the number of players throughout the session-->
+<!--            Because the value of the js variable number-of-players Will be set to the initial value on page load!-->
+            <input type="hidden" name="number-of-players" value="">
+            <input type="hidden" name="current_player" value="">
+            <div>
+                <button id="form-submit-btn" onclick="Yahtzee.createPlayers()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="userInput(id)" th:id="${'user-input-' + id}" class="user-data-container">
+    <span class="player-count" th:text="${'Player ' + id + ': '}"></span>
+    <div class="user-data-input">
+        <label class="form-label" th:for="${'name-' + id}">Name</label>
+        <input class="form-control" type="text" th:id="${'name-' + id}">
+        <img th:id="${'plus-sign-' + id}" class="plus-icon plus-icon-hidden" src="/media/plus.png" th:src="@{/media/plus.png}" alt="plus sign" onclick="Yahtzee.addPlayerInputField()"/>
+    </div>
+</div>
+</body>
+</html>
