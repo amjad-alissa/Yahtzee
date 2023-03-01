@@ -6,28 +6,21 @@
 <body>
 <div th:fragment="playing-area">
     <div class="playing-area">
-        <div class="players-avatars">
-            <div th:replace="~{/fragments/images :: avatar-dog}"></div>
-            <div>
-                <h2 class="vs">VS</h2>
-            </div>
-            <div th:replace="~{/fragments/images :: avatar-cat}"></div>
-        </div>
         <div class="shuffle-dices-container">
             <!-- iStat is a Status Variable enables a useful mechanism to keep track of the iteration process -->
             <div class="random-dice-container" th:each="iconSource, iStat : ${iconSources}">
                 <img th:id="${(iStat.index + 1)}" class="dice-red" th:src="${iconSource}"
-                     onclick="toggleCheckMark(this.id)" alt="dice-icon" src="">
+                     onclick="Yahtzee.toggleCheckMark(this.id)" alt="dice-icon" src="">
                 <img class="icons checkmark-hidden" th:id="${'checkmark-' + (iStat.index + 1)}"
                      th:src="@{/media/checkmark.png}" alt="checkmark" src="">
             </div>
         </div>
 
         <div class="buttons-area">
-            <button id="commit-btn" class="btn commit-btn commit-btn-disabled" onclick="commitShuffel()">
+            <button id="commit-btn" class="btn commit-btn" onclick="Yahtzee.commitDecision()">
                 <img th:replace="~{/fragments/images :: correct-sign}" alt="commit-sign" src="">
             </button>
-            <button id="shuffel-btn" class="btn shuffel-btn" onclick="shuffelDices()">
+            <button id="shuffel-btn" class="btn shuffel-btn" onclick="Yahtzee.shuffelDices()">
                 <img th:replace="~{/fragments/images :: play-dice}" alt="shuffel dices" src="">
             </button>
         </div>
