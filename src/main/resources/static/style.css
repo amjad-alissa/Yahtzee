@@ -147,7 +147,6 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .index-container {
@@ -157,12 +156,12 @@ a {
 
 .rules-container {
     padding: 24px;
-    width: 840px;
+    width: 1000px;
     margin-bottom: 120px;
 }
 
 
-.rules-content li, .rules-content p, .welcome-para {
+.rules-content li, .rules-paragraph, .welcome-para {
     font-family: var(--main-font);
     font-weight: var(--font-light);
     font-size: 24px;
@@ -171,9 +170,6 @@ a {
     text-align: justify;
 }
 
-.rules-content p {
-    font-weight: var(--font-bold);
-}
 
 .rules-subtitle, .vs, .welcome-title {
     font-family: var(--main-font);
@@ -188,7 +184,7 @@ a {
     font-size: var(--font-size-medium);
 }
 
-.kniffel-img {
+.yahtzee-rules {
     border: var(--secondary-color);
     display: block;
     margin-left: auto;
@@ -343,7 +339,7 @@ img.profile-icon {
 }
 
 .result-text {
-    color: var(--secondary-color);
+    color: var(--font-color);
     padding: 8px 16px;
 }
 

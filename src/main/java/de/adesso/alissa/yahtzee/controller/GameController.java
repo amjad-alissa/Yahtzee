@@ -1,5 +1,7 @@
 package de.adesso.alissa.yahtzee.controller;
 
+import de.adesso.alissa.yahtzee.game.elements.ResultElement;
+import de.adesso.alissa.yahtzee.game.elements.ScoreElement;
 import de.adesso.alissa.yahtzee.game.elements.Scoreboard;
 import de.adesso.alissa.yahtzee.game.elements.DiceSetResponse;
 import de.adesso.alissa.yahtzee.service.YahtzeeGameService;
@@ -79,8 +81,20 @@ public class GameController {
      * @return the id of the next player
      */
     @GetMapping("/commitDecision")
-    public @ResponseBody int commitDecision(Model model, @RequestParam String rowLabel, @RequestParam String section, @RequestParam int playerId) {
+    public @ResponseBody int commitDecision(@RequestParam String rowLabel, @RequestParam String section, @RequestParam int playerId) {
         YAHTZEE_GAME_SERVICE.processDecision(rowLabel, section, playerId);
         return YAHTZEE_GAME_SERVICE.getNextPlayer(playerId);
+    }
+
+    @GetMapping("/rankPlayers")
+    public @ResponseBody ResultElement[] rankPlayers() {
+        return YAHTZEE_GAME_SERVICE.rankPlayers();
+    }
+
+
+
+    @GetMapping("/checkEndOfGame")
+    public @ResponseBody boolean checkEndOfGame() {
+        return YAHTZEE_GAME_SERVICE.checkEndOfGame();
     }
 }
