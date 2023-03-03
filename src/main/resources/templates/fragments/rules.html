@@ -1,94 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="~{head :: head(viewName='Score Fragment')}">
+    <title></title>
 <body>
-<div th:fragment= "rules" class="container">
+<div th:fragment="rules" class="container">
     <div class="rules-container">
         <div class="rules-content">
-            <h2 class="rules-subtitle">Die Regeln für Kniffel - so gehts los: </h2>
-            <p class="rules-paragraph">Für Kniffel werden mindestens zwei Spieler benötigt. Nach oben ist der Anzahl der
-                Spieler keine Grenze gesetzt.</p>
+            <h2 class="rules-subtitle">The rules for Yahtzee</h2>
+            <p class="rules-paragraph">The objective of YAHTZEE is to get as many points as possible by rolling five
+                dice and getting certain combinations of dice.</p>
 
-            <img th:replace="~{/fragments/images :: kniffel-img}">
+            <img th:replace="~{/fragments/images :: yahtzee-rules}" alt="" src="">
+
+            <h2 class="rules-subtitle">Gameplay</h2>
+            <p class="rules-paragraph">In each turn a player may throw the dice up to three times. A player doesn't have
+                to roll all five dice on the second and third throw of a round, he may put as many dice as he wants to
+                the side and only throw the ones that don't have the numbers he's trying to get. For example, a player
+                throws and gets 1,3,3,4,6. He decides he wants to try for the large straight, 1,2,3,4,5. So, he puts
+                1,3,4 to the side and only throws 3 and 6 again, hoping to get 2 and 5.</p>
+            <p class="rules-paragraph">In this game you click on the dice you want to keep. They will be moved down and
+                will not be thrown the next time you press the 'Roll Dice' button. If you decide after the second throw
+                in a turn that you don't want to keep the same dice before the third throw then you can click them again,
+                and they will move back to the table and be thrown in the third throw.</p>
+
+            <h2 class="rules-subtitle">Upper section combinations</h2>
+            <img th:replace="~{/fragments/images :: yahtzee-rules-upper}" alt="" src="">
 
             <ul class="rules-list">
-                <li class="rules-list-element">Beim Kniffel werden fünf Würfel mit einem Becher geworfen. Jeder Spieler hat
-                    drei Würfe.
-                </li>
-                <li class="rules-list-element">In diesen drei Würfen versucht er, möglichst viele Punkte für eines der im
-                    zweiten Abschnitt beschrieben Felder zu erzielen. Dabei kann er bei den ersten beiden Würfen Würfel mit
-                    passender Augenzahl auf die Seite legen und muss diese nicht noch einmal würfeln.
-                </li>
-                <li class="rules-list-element">Nach dem dritten Wurf müssen Sie ein Feld auf Ihrem Spielzettel vom
-                    Kniffel-Block ausfüllen. Idealerweise natürlich das, das Ihnen am meisten Punkte bringt. Eingetragen
-                    werden muss immer etwas. Haben Sie beispielsweise keine Straße erreicht, können Sie dafür in einem
-                    anderen Feld 0 Punkte eintragen.
-                </li>
-                <li class="rules-list-element">Danach ist der im Uhrzeigersinn nächste Spieler an der Reihe und würfelt
-                    seinerseits dreimal.
-                </li>
-                <li class="rules-list-element">Das Spiel ist zu Ende, wenn jeder Spieler alle Felder auf seiner Karte
-                    ausgefüllt hat. Wie bei anderen Würfelspielen auch, werden zum Schluss die Punkte zusammengezählt:
-                </li>
-                <li class="rules-list-element">Zuerst addieren Sie die Punkte im oberen Bereich, mit den Einern bis zu den
-                    Sechsern. Wer hier mindestens 65 Punkte erreicht hat, bekommt 35 Extrapunkte.
-                </li>
-                <li class="rules-list-element">Rechnen Sie anschließend die Punkte im unteren Spielabschnitt zusammen und
-                    ermitteln Sie zum Schluss die Gesamtsumme. Die Runde gewonnen hat, wer die meisten Punkte erzielt hat.
-                </li>
+                <li class="rules-list-element"> <b>Ones:</b> Get as many ones as possible.</li>
+                <li class="rules-list-element"><b>Twos:</b> Get as many twos as possible.</li>
+                <li class="rules-list-element"><b>Threes:</b> Get as many threes as possible.</li>
+                <li class="rules-list-element"><b>Fours:</b> Get as many fours as possible.</li>
+                <li class="rules-list-element"><b>Fives:</b> Get as many fives as possible.</li>
+                <li class="rules-list-element"><b>Sixes:</b> Get as many sixes as possible.</li>
             </ul>
-            <h2 class="rules-subtitle">Diese Kombinationen müssen Sie erwürfeln</h2>
-            <p class="rules-paragraph">Jeder Mitspieler bekommt einen Spielzettel vom Kniffel-Block, auf dem er die
-                verschiedenen Punkte eintragen kann. Insgesamt gilt es, 13 Felder auszufüllen.
+            <p class="rules-paragraph">For the six combinations above the score for each of them is the sum of dice of the right kind. E.g. if you get 1,3,3,3,5 and you choose Threes you will get 3*3 = 9 points. The sum of all the above combinations is calculated and if it is 63 or more, the player will get a bonus of 35 points. On average a player needs three of each to reach 63, but it is not required to get three of each exactly, it is perfectly OK to have five sixes, and zero ones for example, as long as the sum is 63 or more the bonus will be awarded.</p>
 
-                Es wird ein Spieler bestimmt, der für die anderen Spiele die Punkte in den Kniffel-Block einträgt. Der Reihe
-                nach wird gewürfelt. Wer die höchste Zahl hat, beginnt. Das Spiel kann losgehen, nachdem die Namen der
-                Spieler in der obersten Zeile des Kniffel-Blocks notiert sind.
-            </p>
-
-            <img th:replace="~{/fragments/images :: kniffel-rules}">
-
+            <h2 class="rules-subtitle">Lower section combinations</h2>
+            <img th:replace="~{/fragments/images :: yahtzee-rules-lower}" alt="" src="">
             <ul>
-                <li class="rules-list-element">Bei den 1ern werden alle gewürfelten Einser addiert.</li>
-                <li class="rules-list-element">Bei den 2ern werden alle gewürfelten Zweier addiert.</li>
-                <li class="rules-list-element">Bei den 3er addieren Sie alle gewürfelten Dreier.</li>
-                <li class="rules-list-element">Und bei den 4er werden alle gewürfelten Vierer zusammengerechnet.</li>
-                <li class="rules-list-element">Im 5er-Feld notieren Sie die Summe aller gewürfelten Fünfer.</li>
-                <li class="rules-list-element">Und im letzten Feld des oberen Abschnitts für die 6er zählen Sie alle
-                    gewürfelten Sechser zusammen.
-                </li>
-                <li class="rules-list-element">Im unteren Abschnitt finden Sie weitere Spielfelder, bei denen Sie Punkte
-                    eintragen können. Hier müssen Sie bestimmte Würfelkombinationen erzielen.
-                </li>
-                <li class="rules-list-element">Für den Dreierpasch brauchen Sie mindestens dreimal dieselbe Zahl. Alle
-                    Augen, auch die Nicht-Dreier- werden anschließend zusammengezählt.
-                </li>
-                <li class="rules-list-element">Beim Viererpasch brauchen Sie mindestens viermal dieselbe Zahl und addieren
-                    anschließend auch die Augen des fünften Würfels.
-                </li>
-                <li class="rules-list-element">Beim Full-House zählen je dreimal und zweimal gleiche Zahlen. 25 Punkte
-                    werden in das Feld eintragen
-                </li>
-                <li class="rules-list-element">Die kleine Straße benötigt entweder die Würfelkombination von 1-4, 2-5 oder
-                    3-6. 30 Punkte werden in das Feld eintragen, wenn Sie diese erwürfeln.
-                </li>
-                <li class="rules-list-element">Für die große Straße brauchen Sie die Würfelkombination von 1-5 oder 2-6,
-                    dann können Sie 40 Punkte im Spielfeld notieren.
-                </li>
-                <li class="rules-list-element">Der Kniffel ist das höchst gepunktete Spielfeld. Hier müssen Sie fünfmal die
-                    gleiche Zahl erwürfeln. 50 Punkte können Sie dann in das Feld eingetragen.
-                </li>
-                <li class="rules-list-element">Die Chance zählt alle Augen querbeet. Hier muss nichts zusammenpassen.
-                    Deswegen ist es gut, diese aufzusparen. So brauchen Sie keine 0 Punkte im Spielblock eintragen, falls
-                    Sie keines der anderen Spielfelder erwürfeln konnten.
-                </li>
-                <li class="rules-list-element">Haben Sie alle Punkte addiert, können Sie diese zusätzlich auf der Rückseite
-                    eintragen. So können Sie am Ende des Spiels auch einen Gesamtsieger küren.
-                </li>
-                <li class="rules-list-element">Schaffen Sie es, mehr als einen Kniffel in einer Runde zu erwürfeln, werden
-                    auf der Rückseite dafür auch jeweils 100 Extrapunkte notiert.
-                </li>
+                <li class="rules-list-element"><b>Three of a kind:</b> Get three dice with the same number. Points are the sum all dice (not just the three of a kind).</li>
+                <li class="rules-list-element"><b>Four of a kind:</b> Get four dice with the same number. Points are the sum all dice (not just the four of a kind).</li>
+                <li class="rules-list-element"><b>Full house:</b> Get three of a kind and a pair, e.g. 1,1,3,3,3 or 3,3,3,6,6. Scores 25 points.</li>
+                <li class="rules-list-element"><b>Small straight:</b> Get four sequential dice, 1,2,3,4 or 2,3,4,5 or 3,4,5,6. Scores 30 points.</li>
+                <li class="rules-list-element"><b>Large straight:</b> Get five sequential dice, 1,2,3,4,5 or 2,3,4,5,6. Scores 40 points.</li>
+                <li class="rules-list-element"><b>Chance:</b> You can put anything into chance, it's basically like a garbage can when you don't have anything else you can use the dice for. The score is simply the sum of the dice.</li>
+                <li class="rules-list-element"><b>YAHTZEE:</b> Five of a kind. Scores 50 points.</li>
             </ul>
+
+            <h2 class="rules-subtitle">Strategy tips</h2>
+            <p class="rules-paragraph">Try to get the bonus. Focus on getting good throws with fives and sixes, then it won't matter if you put 0 in the ones or twos. You can always put in 0 for a combination if you don't have it, even if you have some other combination. E.g. if you had 2,3,4,5,6 and the only things you had left were Ones and Sixes, then it would be better to put 0 in Ones than to put only 6 in Sixes.</p>
+
         </div>
     </div>
 </div>
