@@ -1,7 +1,7 @@
 package de.adesso.alissa.yahtzee.game.enums;
 
 /**
- * The enum Yahtzee.
+ * The enum Yahtzee which holds the constant values for the game.
  */
 public enum Yahtzee {
     /**
@@ -37,6 +37,9 @@ public enum Yahtzee {
      */
     UPPER_SECTION_ROWS(6),
 
+    /**
+     * Points limit for bonus yahtzee.
+     */
     POINTS_LIMIT_FOR_BONUS(63);
 
     private final int value;

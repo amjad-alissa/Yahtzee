@@ -1,9 +1,9 @@
 package de.adesso.alissa.yahtzee.game.enums;
 
 /**
- * The enum Dice icon source.
+ * The enum RedDiceIconSource for the red dice.
  */
-public enum DiceIconSource {
+public enum RedDiceIconSource {
 
     /**
      * dice icon source One .
@@ -32,7 +32,7 @@ public enum DiceIconSource {
 
     private final String iconSource;
 
-    DiceIconSource(final String iconSource) {
+    RedDiceIconSource(final String iconSource) {
         this.iconSource = iconSource;
     }
 

@@ -1,20 +1,62 @@
 package de.adesso.alissa.yahtzee.game.enums;
 
+/**
+ * The enum Label for the ScoreTable.
+ */
 public enum Label {
-    ONES("Einser"),
-    TOWS("Zweier"),
-    THREES("Dreier"),
-    FOURS("Vierer"),
-    FIVES("Fünfer"),
-    SIXES("Sechser"),
+    /**
+     * Ones label.
+     */
+    ONES("Ones"),
+    /**
+     * Tows label.
+     */
+    TOWS("Tows"),
+    /**
+     * Threes label.
+     */
+    THREES("Threes"),
+    /**
+     * Fours label.
+     */
+    FOURS("Fours"),
+    /**
+     * Fives label.
+     */
+    FIVES("Fives"),
+    /**
+     * Sixes label.
+     */
+    SIXES("Sixes"),
 
-    THREE_SAME("Dreierpasch"),
-    FOUR_SAME("Viererpasch"),
-    FULL_HOUSE("Voll-Haus"),
-    SMALL_STREET("Kleine Straße"),
-    BIG_STREET("Große Straße"),
+    /**
+     * Three same label.
+     */
+    THREE_SAME("Three-Same"),
+    /**
+     * Four same label.
+     */
+    FOUR_SAME("Four-Same"),
+    /**
+     * Full house label.
+     */
+    FULL_HOUSE("Full-House"),
+    /**
+     * Small street label.
+     */
+    SMALL_STREET("Small-Straight"),
+    /**
+     * Big street label.
+     */
+    BIG_STREET("Large-Straight"),
 
-    YAHTZEE("Kniffel"),
+    /**
+     * Yahtzee label.
+     */
+    YAHTZEE("YAHTZEE"),
+    /**
+     * Chance label.
+     */
     CHANCE("Chance");
 
     private final String value;
@@ -23,6 +65,11 @@ public enum Label {
         this.value = value;
     }
 
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
     public String getValue() {
         return this.value;
     }

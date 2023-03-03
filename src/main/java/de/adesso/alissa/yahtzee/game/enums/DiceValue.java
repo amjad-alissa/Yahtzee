@@ -1,7 +1,7 @@
 package de.adesso.alissa.yahtzee.game.enums;
 
 /**
- * The enum Dice value representing the possible six values of a dice.
+ * The enum Dice value representing the possible six values of a die.
  */
 public enum DiceValue {
     /**
