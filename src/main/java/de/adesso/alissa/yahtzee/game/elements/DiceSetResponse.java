@@ -1,14 +1,14 @@
-package de.adesso.alissa.yahtzee.game.business;
+package de.adesso.alissa.yahtzee.game.elements;
 
 /**
- * The type Response data.
+ * The type Dice set response which serves as the response for the request for generating a random dice set.
  */
 public class DiceSetResponse {
     private int[] pointsUpperSection;
     private int[] pointsLowerSection;
     private String[] diceIconSource;
 
-    
+
     /**
      * Get points upper section int [ ].
      *
@@ -46,7 +46,7 @@ public class DiceSetResponse {
     }
 
     /**
-     * Get dice source images string [ ].
+     * Get dice icon source string [ ].
      *
      * @return the string [ ]
      */
@@ -55,9 +55,9 @@ public class DiceSetResponse {
     }
 
     /**
-     * Sets dice source images.
+     * Sets dice icon source.
      *
-     * @param diceIconSource the dice source images
+     * @param diceIconSource the dice icon source
      */
     public void setDiceIconSource(String[] diceIconSource) {
         this.diceIconSource = diceIconSource;

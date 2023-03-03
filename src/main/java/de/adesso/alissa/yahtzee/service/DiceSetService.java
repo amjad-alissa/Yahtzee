@@ -1,13 +1,21 @@
 package de.adesso.alissa.yahtzee.service;
 
 import de.adesso.alissa.yahtzee.game.elements.DiceSet;
-import de.adesso.alissa.yahtzee.game.enums.DiceEnum;
+import de.adesso.alissa.yahtzee.game.enums.RedDice;
 import de.adesso.alissa.yahtzee.game.enums.Yahtzee;
 
+/**
+ * The DiceSetService serves as the service class for DiceSet class.
+ */
 public class DiceSetService {
 
     private final DiceSet diceSet;
 
+    /**
+     * Instantiates a new Dice set service.
+     *
+     * @param diceSet the dice set
+     */
     public DiceSetService(DiceSet diceSet) {
         this.diceSet = diceSet;
     }
@@ -20,7 +28,7 @@ public class DiceSetService {
     public int[] getDiceValues() {
         int[] diceValues = new int[Yahtzee.NUMBER_OF_DICES.getValue()];
         for (int index = 0; index < this.diceSet.getDices().length; index++) {
-            diceValues[index] = this.diceSet.getDices()[index].getValue();
+            diceValues[index] = this.diceSet.getDices()[index].value();
         }
         return diceValues;
     }
@@ -33,7 +41,7 @@ public class DiceSetService {
     public String[] getDiceSourceImages() {
         String[] diceIconsSources = new String[Yahtzee.NUMBER_OF_DICES.getValue()];
         for (int index = 0; index < this.diceSet.getDices().length; index++) {
-            diceIconsSources[index] = this.diceSet.getDices()[index].getIconSource();
+            diceIconsSources[index] = this.diceSet.getDices()[index].iconSource();
         }
         return diceIconsSources;
     }
@@ -46,7 +54,7 @@ public class DiceSetService {
     public void updateSelectedDices(final boolean[] selectedDices) {
         for (int index = 0; index < this.diceSet.getDices().length; index++) {
             if (!selectedDices[index]) {
-                this.diceSet.getDices()[index] = DiceEnum.randomDice();
+                this.diceSet.getDices()[index] = RedDice.randomDice();
             }
         }
     }

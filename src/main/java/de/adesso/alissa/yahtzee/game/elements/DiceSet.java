@@ -1,10 +1,10 @@
 package de.adesso.alissa.yahtzee.game.elements;
 
-import de.adesso.alissa.yahtzee.game.enums.DiceEnum;
+import de.adesso.alissa.yahtzee.game.enums.RedDice;
 import de.adesso.alissa.yahtzee.game.enums.Yahtzee;
 
 /**
- * The Singleton type DiceSet represents the set of (5) dices.
+ * The Singleton type DiceSet represents the set of (5) red dices.
  */
 public class DiceSet {
 
@@ -22,6 +22,7 @@ public class DiceSet {
 
     /**
      * Get the Singleton instance
+     *
      * @return an instance of the type DiceSet
      */
     public static DiceSet getInstance() {
@@ -36,7 +37,7 @@ public class DiceSet {
      */
     public void initializeDices() {
         for (int index = 0; index < this.dices.length; index++) {
-            this.dices[index] = DiceEnum.randomDice();
+            this.dices[index] = RedDice.randomDice();
         }
     }
 
