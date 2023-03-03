@@ -1,4 +1,4 @@
-package de.adesso.alissa.yahtzee.game.business;
+package de.adesso.alissa.yahtzee.service;
 
 import de.adesso.alissa.yahtzee.game.enums.DiceValue;
 import de.adesso.alissa.yahtzee.game.enums.Yahtzee;
@@ -6,34 +6,17 @@ import de.adesso.alissa.yahtzee.game.enums.Yahtzee;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * The Singleton type PointsCalculator to calculate the points for each section of the score block.
+ * The type Points calculator service which serves as the class for calculating the points for each row in the ScoreTable.
  */
-public class PointsCalculator {
+public class PointsCalculatorService {
 
-    // Singleton instance
-    private static PointsCalculator pointsCalculator = null;
-
-    private PointsCalculator() {}
-
-    /**
-     * Gets the singleton instance.
-     *
-     * @return the singleton instance
-     */
-    public static PointsCalculator getInstance() {
-        if (pointsCalculator == null) {
-            pointsCalculator = new PointsCalculator();
-        }
-        return pointsCalculator;
-    }
 
     /**
      * Calculate the points for the upper section of the score board
      *
-     * @param diceValues the values of the dice Set selected by the player
-     * @return array with the points for each row in the upper section array[0] points for ones, array[1] points for ones, .....
+     * @param diceValues the values of the dice Set selected by the player array[0] points for ones, array[1] points for ones, .....
+     * @return the int [ ]
      */
     public int[] calculateResultsForUpperSection(final int[] diceValues) {
         int[] upperSectionPoints = new int[Yahtzee.UPPER_SECTION_ROWS.getValue()];
@@ -67,8 +50,8 @@ public class PointsCalculator {
     /**
      * Calculate the points for the upper section of the score board
      *
-     * @param diceValues the values of the dice Set selected by the player
-     * @return array with the points for each row in the upper section         array[0] points for Three the same, array[1] points for Four the same, .....
+     * @param diceValues the values of the dice Set selected by the player array[0] points for Three the same, array[1] points for Four the same, .....
+     * @return the int [ ]
      */
     public int[] calculateResultsForLowerSection(final int[] diceValues) {
         int[] lowerSectionPoints = new int[Yahtzee.LOWER_SECTION_ROWS.getValue()];
@@ -127,8 +110,9 @@ public class PointsCalculator {
 
     /**
      * Checks whether in @param diceValues exist a value with exact or more than @param numberOfOccurrences
+     *
      * @param numberOfOccurrences the frequency of value to look for
-     * @param diceValues the values of the dice Set selected by the player
+     * @param diceValues          the values of the dice Set selected by the player
      * @return true if a value exist with exact or more than numberOfOccurrences
      */
     private boolean checkNumberOfOccurrences(final int numberOfOccurrences, final int[] diceValues) {
@@ -157,7 +141,7 @@ public class PointsCalculator {
      * @param diceValues the values of the dice Set selected by the player
      * @return the total points which exist in diceValues
      */
-    public int sumValues(final int[] diceValues) {
+    private int sumValues(final int[] diceValues) {
         int total = 0;
 
         for (int value : diceValues) {
@@ -169,6 +153,7 @@ public class PointsCalculator {
 
     /**
      * Check if the diceValues has two values with frequency two and three
+     *
      * @param diceValues the values of the dice Set selected by the player
      * @return
      */
@@ -178,7 +163,7 @@ public class PointsCalculator {
         boolean frequencyTwo = false;
         boolean frequencyThree = false;
 
-        for (Integer key: diceValueFrequency.keySet()) {
+        for (Integer key : diceValueFrequency.keySet()) {
             if (diceValueFrequency.get(key) == DiceValue.TWO.getValue()) {
                 frequencyTwo = true;
             } else if (diceValueFrequency.get(key) == DiceValue.THREE.getValue()) {
@@ -191,6 +176,7 @@ public class PointsCalculator {
 
     /**
      * Calculate the frequency for each possible value of dice (1 - 6)
+     *
      * @param diceValues the values of the dice Set selected by the player
      * @return a Map with each value and its frequency
      */
@@ -215,6 +201,7 @@ public class PointsCalculator {
 
     /**
      * Map for each possible value of dice (1 - 6) if it exists in diceValues
+     *
      * @param diceValues the values of the dice Set selected by the player
      * @return array with the values if they exist or not
      */
@@ -232,6 +219,7 @@ public class PointsCalculator {
 
     /**
      * Check if diceValues satisfy the conditions for small street
+     *
      * @param diceValues the values of the dice Set selected by the player
      * @return whether the conditions for a small street is met
      */
@@ -240,27 +228,28 @@ public class PointsCalculator {
 
         // 1 - 4
         boolean oneToFour = valuesExist[DiceValue.ONE.getValue() - 1] &&
-                            valuesExist[DiceValue.TWO.getValue() - 1] &&
-                            valuesExist[DiceValue.THREE.getValue() - 1] &&
-                            valuesExist[DiceValue.FOUR.getValue() - 1];
+                valuesExist[DiceValue.TWO.getValue() - 1] &&
+                valuesExist[DiceValue.THREE.getValue() - 1] &&
+                valuesExist[DiceValue.FOUR.getValue() - 1];
 
         // 2 - 5
         boolean twoToFive = valuesExist[DiceValue.TWO.getValue() - 1] &&
-                            valuesExist[DiceValue.THREE.getValue() - 1] &&
-                            valuesExist[DiceValue.FOUR.getValue() - 1] &&
-                            valuesExist[DiceValue.FIVE.getValue() - 1];
+                valuesExist[DiceValue.THREE.getValue() - 1] &&
+                valuesExist[DiceValue.FOUR.getValue() - 1] &&
+                valuesExist[DiceValue.FIVE.getValue() - 1];
 
         // 3 - 6
         boolean threeToSix = valuesExist[DiceValue.THREE.getValue() - 1] &&
-                             valuesExist[DiceValue.FOUR.getValue() - 1] &&
-                             valuesExist[DiceValue.FIVE.getValue() - 1] &&
-                             valuesExist[DiceValue.SIX.getValue() - 1];
+                valuesExist[DiceValue.FOUR.getValue() - 1] &&
+                valuesExist[DiceValue.FIVE.getValue() - 1] &&
+                valuesExist[DiceValue.SIX.getValue() - 1];
 
         return oneToFour || twoToFive || threeToSix;
     }
 
     /**
      * Check if diceValues satisfy the conditions for big street
+     *
      * @param diceValues the values of the dice Set selected by the player
      * @return whether the conditions for a big street is met
      */
@@ -269,17 +258,17 @@ public class PointsCalculator {
 
         // 1 - 5
         boolean oneToFive = valuesExist[DiceValue.ONE.getValue() - 1] &&
-                            valuesExist[DiceValue.TWO.getValue() - 1] &&
-                            valuesExist[DiceValue.THREE.getValue() - 1] &&
-                            valuesExist[DiceValue.FOUR.getValue() - 1] &&
-                            valuesExist[DiceValue.FIVE.getValue() - 1];
+                valuesExist[DiceValue.TWO.getValue() - 1] &&
+                valuesExist[DiceValue.THREE.getValue() - 1] &&
+                valuesExist[DiceValue.FOUR.getValue() - 1] &&
+                valuesExist[DiceValue.FIVE.getValue() - 1];
 
         // 2 - 6
         boolean twoToSix = valuesExist[DiceValue.TWO.getValue() - 1] &&
-                           valuesExist[DiceValue.THREE.getValue() - 1] &&
-                           valuesExist[DiceValue.FOUR.getValue() - 1] &&
-                           valuesExist[DiceValue.FIVE.getValue() - 1]&&
-                           valuesExist[DiceValue.SIX.getValue() - 1];
+                valuesExist[DiceValue.THREE.getValue() - 1] &&
+                valuesExist[DiceValue.FOUR.getValue() - 1] &&
+                valuesExist[DiceValue.FIVE.getValue() - 1] &&
+                valuesExist[DiceValue.SIX.getValue() - 1];
 
         return oneToFive || twoToSix;
     }
