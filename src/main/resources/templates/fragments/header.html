@@ -10,28 +10,35 @@
         <div class="logo-container">
             <a class="logo-text" th:href="@{/}">
                 <img th:replace="~{/fragments/images :: logo}" alt="" src="">
-                <span>Kniffel</span>
+                <span>Yahtzee</span>
             </a>
         </div>
         <div class="nav-container">
             <nav class="nav-bar">
                 <ul class="nav-links">
                     <li><a id="home-link" th:href="@{/}">Home</a></li>
-<!--                    <li><a id="game-link"  th:href="@{/game}">Game</a></li>-->
                     <li><a id="rules-link" th:href="@{/rules}">Rules</a></li>
                     <li><a id="about-link" th:href="@{/more}">More</a></li>
+                    <li>
+                        <a id="result-link" onclick="Yahtzee.showResultOverview()">Result</a>
+                        <div th:replace="~{/fragments/header :: result-overview}"></div>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <div th:replace="~{/fragments/header :: login-register}"></div>
+        <div></div>
     </div>
 </header>
 
 <!--login & signup buttons fragment-->
-<div th:fragment="login-register" class="login-container">
-    <a th:href="@{#}">
-        <div th:replace="~{/fragments/images :: profile-icon}"></div>
-    </a>
+<div th:fragment="result-overview" class="login-container">
+    <div id="result-container" class="result-container-hidden">
+        <div class="result-overview" th:each="resultElement, iStat: ${resultElements}" th:id="${resultElement.playerName + '-result'}">
+            <h2 th:id="rank" class="result-text" th:text="${'#'+(iStat.index + 1)}"></h2>
+            <h2 th:id="name" class="result-text" th:text="${resultElement.playerName}"></h2>
+            <h2 th:id="points" class="result-text" th:text="${resultElement.totalPoints}"></h2>
+        </div>
+    </div>
 </div>
 
 <!--Profile details fragment-->

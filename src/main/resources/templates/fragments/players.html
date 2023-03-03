@@ -7,10 +7,9 @@
 <div th:fragment="players-tabs">
     <div class="players-container">
         <div th:each="player, iStat : ${players}" class="player-tab-container">
-            <button th:id="${'player-'+ (iStat.index + 1)}" class="player-tab btn"
-                    onclick="Yahtzee.currentPlayer(this.id)" th:classappend="${iStat.first} ? 'player-tab-selected' : ''">
+            <button th:id="${'player-'+ (iStat.index + 1)}" class="player-tab btn" th:classappend="${player.currentPlayer} ? 'player-tab-selected' : ''">
                 <img src="" class="player-avatar icons" th:src="${player.avatarIconSource}" alt="">
-                <span th:id="${'name-' + (iStat.index + 1)}" class="player-name" th:text="${player.name}" th:classappend="${iStat.first} ? 'player-selected' : ''"></span>
+                <span th:id="${'name-' + (iStat.index + 1)}" class="player-name" th:text="${player.name}" th:classappend="${player.currentPlayer} ? 'player-selected' : ''"></span>
             </button>
             <span th:if="${not iStat.last}" th:id="${'vs-' + (iStat.index + 1)}" class="vs" th:text="VS">VS</span>
         </div>

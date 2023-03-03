@@ -9,7 +9,7 @@
         <div class="shuffle-dices-container">
             <!-- iStat is a Status Variable enables a useful mechanism to keep track of the iteration process -->
             <div class="random-dice-container" th:each="iconSource, iStat : ${iconSources}">
-                <img th:id="${(iStat.index + 1)}" class="dice-red" th:src="${iconSource}"
+                <img th:id="${(iStat.index + 1)}" class="dice-red dice-red-hidden" th:src="${iconSource}"
                      onclick="Yahtzee.toggleCheckMark(this.id)" alt="dice-icon" src="">
                 <img class="icons checkmark-hidden" th:id="${'checkmark-' + (iStat.index + 1)}"
                      th:src="@{/media/checkmark.png}" alt="checkmark" src="">
@@ -22,6 +22,7 @@
             </button>
             <button id="shuffel-btn" class="btn shuffel-btn" onclick="Yahtzee.shuffelDices()">
                 <img th:replace="~{/fragments/images :: play-dice}" alt="shuffel dices" src="">
+                <span id="shuffel-count">3</span>
             </button>
         </div>
     </div>

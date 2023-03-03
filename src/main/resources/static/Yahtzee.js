@@ -1,9 +1,9 @@
 class Yahtzee {
     static number_of_players = 2;
-    static current_player = 'player-1';
     static selected_row = null;
     static table_section = null;
     static selected_dice = [false, false, false, false, false];
+    static shuffelCount = 3;
 
 
     //Toggle the green checkmark beside the red dice
@@ -15,27 +15,37 @@ class Yahtzee {
     }
 
     static shuffelDices() {
+        this.shuffelCount -= 1;
+        if (this.shuffelCount > -1) {
+            let shuffel_count = document.getElementById("shuffel-count");
+            shuffel_count.innerHTML = this.shuffelCount;
+            Yahtzee.showRandomDice();
+            Yahtzee.generateRandomDice();
+        } else {
+            alert("You can shuffel the dice only 3 times.");
+        }
+    }
+
+    static generateRandomDice() {
         $(document).ready(function () {
-            $("#shuffel-btn").click(function () {
-                $.ajax({
-                    url: "/randomShuffel",
-                    cache: false,
-                    data: "selectedDices=" + Yahtzee.selected_dice,
-                    success: function (diceSetResponse) {
-                        Yahtzee.processSelectedDice(diceSetResponse);
-                        Yahtzee.registerPredictedPointsForUpperSection(diceSetResponse);
-                        Yahtzee.registerPredictedPointsForLowerSection(diceSetResponse);
-                    }
-                })
-            })
-        })
+            $.ajax({
+                url: "/randomShuffel",
+                cache: false,
+                data: "selectedDices=" + Yahtzee.selected_dice,
+                success: function (diceSetResponse) {
+                    Yahtzee.processSelectedDice(diceSetResponse);
+                    Yahtzee.registerPredictedPointsForUpperSection(diceSetResponse);
+                    Yahtzee.registerPredictedPointsForLowerSection(diceSetResponse);
+                }
+            });
+        });
     }
 
     static processSelectedDice(diceSetResponse) {
         let diceIconSource = diceSetResponse["diceIconSource"];
         for (let index = 0; index < diceIconSource.length; index++) {
             if (!Yahtzee.selected_dice[index]) {
-                let img = document.getElementById("" + (index + 1));
+                let img = document.getElementById('' + (index + 1));
                 img.src = diceIconSource[index];
                 img.classList.add("dice-fade");
                 img.addEventListener("animationend", Yahtzee.resetTransition);
@@ -76,19 +86,17 @@ class Yahtzee {
         // for the lower table
         Yahtzee.removeHighlightFromElements(lower_table);
 
-        // highlight the clicked row
-        if (!row.classList.contains("row-selected")) {
-            Yahtzee.selected_row = row;
-            Yahtzee.table_section = section;
-            row.classList.toggle("row-highlighted");
-            row.classList.toggle("row-selected");
+        Yahtzee.highlightRow(row);
+        Yahtzee.selected_row = row;
+        Yahtzee.table_section = section;
+    }
 
-
-            //highlight the cells for this row
-            $("td", row).each(function () {
-                this.classList.toggle("cell-highlighted");
-            })
-        }
+    static highlightRow(row) {
+        row.classList.add("row-highlighted");
+        //highlight the cells for this row
+        $("td", row).each(function () {
+            this.classList.add("cell-highlighted");
+        })
     }
 
     static removeHighlightFromElements(table) {
@@ -97,7 +105,7 @@ class Yahtzee {
             if (!row.classList.contains("row-selected") && row.classList.contains("row-highlighted")) {
                 row.classList.remove("row-highlighted");
                 $("td", row).each(function () {
-                    this.classList.toggle("cell-highlighted");
+                    this.classList.remove("cell-highlighted");
                 })
             }
         })
@@ -107,28 +115,29 @@ class Yahtzee {
     static styleSelectedRow(row) {
         row.classList.add("row-selected");
         $("td", row).each(function () {
-            this.classList.toggle("cell-selected");
+            this.classList.add("cell-selected");
         })
     }
 
     static commitDecision() {
         Yahtzee.styleSelectedRow(Yahtzee.selected_row);
-        const row_lable = Yahtzee.selected_row.getAttribute('id');
-        Yahtzee.current_player = sessionStorage.getItem('current_player');
-        const player_id = Yahtzee.current_player.at(Yahtzee.current_player.length - 1);
         $(document).ready(function () {
             $("#commit-btn").click(function () {
                 $.ajax({
-                    type: 'POST',
                     url: "/commitDecision",
                     cache: false,
                     data: jQuery.param({
-                        "rowLabel": row_lable,
+                        "rowLabel": Yahtzee.selected_row.getAttribute('id'),
                         "section": Yahtzee.table_section,
-                        "playerId": player_id
+                        "playerId": sessionStorage.getItem('current_player')
                     }),
                     success: function (playerId) {
-                        Yahtzee.currentPlayer(Yahtzee.current_player);
+                        Yahtzee.loadScoreForCurrentPlayer();
+                        Yahtzee.clearPredictionPoints('upper', 6);
+                        Yahtzee.clearPredictionPoints('lower', 7);
+                        setTimeout(function () {
+                            Yahtzee.currentPlayer(playerId);
+                        }, 3000);
                     }
                 });
             });
@@ -170,7 +179,7 @@ class Yahtzee {
                 });
             });
         });
-        sessionStorage.setItem('current_player', "player-1");
+        sessionStorage.setItem('current_player', '1');
     }
 
     static showAddPlayersForm() {
@@ -189,17 +198,13 @@ class Yahtzee {
 
     static currentPlayer(btn_id) {
         Yahtzee.highlightCurrentPlayer(btn_id);
+        Yahtzee.clearScoreTable();
         Yahtzee.loadScoreForCurrentPlayer();
-        Yahtzee.clearPredictionPoints('upper', 6);
-        Yahtzee.clearPredictionPoints('lower', 7);
-        Yahtzee.removeCheckMarks();
     }
 
     static highlightCurrentPlayer(btn_id) {
-        sessionStorage.setItem('current_player', btn_id);
-        Yahtzee.current_player = sessionStorage.getItem('current_player');
+        sessionStorage.setItem('current_player', '' + btn_id);
         Yahtzee.number_of_players = sessionStorage.getItem('number-of-players');
-        const player_id = Yahtzee.current_player[(Yahtzee.current_player.length - 1)];
         // remove the highlight from other player
         for (let i = 1; i <= Yahtzee.number_of_players; i++) {
             if (document.getElementById('name-' + i).classList.contains('player-selected')) {
@@ -208,19 +213,25 @@ class Yahtzee {
                 break;
             }
         }
-        if (!document.getElementById('name-' + player_id).classList.contains('player-selected')) {
-            document.getElementById('name-' + player_id).classList.toggle('player-selected');
-            document.getElementById('player-' + player_id).classList.toggle('player-tab-selected');
+        if (!document.getElementById('name-' + btn_id).classList.contains('player-selected')) {
+            document.getElementById('name-' + btn_id).classList.toggle('player-selected');
+            document.getElementById('player-' + btn_id).classList.toggle('player-tab-selected');
         }
+    }
+
+    static resetShuffelCount() {
+        this.shuffelCount = 3;
+        let shuffel_count = document.getElementById("shuffel-count");
+        shuffel_count.innerHTML = this.shuffelCount;
     }
 
     static loadScoreForCurrentPlayer() {
         $(document).ready(function () {
             $.ajax({
                 type: 'POST',
-                url: "/loadScoreForCurrentPlayer",
+                url: "/getScoreboardForCurrentPlayer",
                 cache: false,
-                data: "playerId=" + Yahtzee.current_player.at(Yahtzee.current_player.length - 1),
+                data: "playerId=" + sessionStorage.getItem('current_player'),
                 success: function (scoreBoard) {
                     Yahtzee.writeScoreForSection(scoreBoard["upperSection"], 'upper');
                     Yahtzee.writeTotalScoreForSection(scoreBoard["totalUpperSection"], 'upper');
@@ -237,10 +248,9 @@ class Yahtzee {
             const row_selected = score_element["selected"];
             const score_cell = document.getElementById(section + '-score-cell-' + (index + 1));
             const row = score_cell.parentNode;
-            if (row.classList.contains('row-selected')) {
-                Yahtzee.removeHighlightFromRow(row);
-            } else if (row_selected) {
-                Yahtzee.highlightSelectedRow(row);
+            if (row_selected) {
+                Yahtzee.highlightRow(row);
+                Yahtzee.styleSelectedRow(row);
             }
             score_cell.innerHTML = score_element["points"];
         }
@@ -253,23 +263,6 @@ class Yahtzee {
         }
     }
 
-    static clearPredictionPoints(section, size) {
-        for (let index = 0; index < size; index++) {
-            let predict_point = document.getElementById(section + "-predict-cell-" + (index + 1));
-            predict_point.innerHTML = 0;
-        }
-    }
-
-    static removeHighlightFromRow(row) {
-        if (!row.classList.contains("row-selected") && row.classList.contains("row-highlighted")) {
-            row.classList.toggle("row-highlighted");
-            //highlight the cells for this row
-            $("td", row).each(function () {
-                this.classList.toggle("cell-highlighted");
-            });
-        }
-    }
-
     static removeCheckMarks() {
         for (let index = 0; index < 5; index++) {
             let checkMarkId = "checkmark-" + (index + 1);
@@ -279,5 +272,76 @@ class Yahtzee {
                 Yahtzee.selected_dice[index] = false;
             }
         }
+    }
+
+    static clearScoreTable() {
+        let upper_table = document.getElementById("upper-table");
+        let lower_table = document.getElementById("lower-table");
+
+        Yahtzee.removeHighlightFromRow(upper_table);
+        Yahtzee.removeHighlightFromRow(lower_table);
+
+        Yahtzee.clearPredictionPoints('upper', 6);
+        Yahtzee.clearPredictionPoints('lower', 7);
+
+        Yahtzee.removeCheckMarks();
+        Yahtzee.resetShuffelCount();
+        Yahtzee.hideRandomDice();
+    }
+
+    static removeHighlightFromRow(table) {
+        $("tr", table).each(function () {
+            let row = this;
+            if (row.classList.contains("row-highlighted")) {
+                row.classList.remove("row-highlighted");
+                row.classList.remove("row-selected");
+                $("td", row).each(function () {
+                    this.classList.remove("cell-highlighted");
+                    this.classList.remove("cell-selected");
+                })
+            }
+        })
+    }
+
+    static clearPredictionPoints(section, size) {
+        for (let index = 0; index < size; index++) {
+            let predict_point = document.getElementById(section + "-predict-cell-" + (index + 1));
+            predict_point.innerHTML = 0;
+        }
+    }
+
+    static hideRandomDice() {
+        for (let index = 1; index <= 5; index++) {
+            let dice = document.getElementById("" + index);
+            dice.classList.add("dice-red-hidden");
+        }
+    }
+
+    static showRandomDice() {
+        for (let index = 1; index <= 5; index++) {
+            let dice = document.getElementById("" + index);
+            dice.classList.remove("dice-red-hidden");
+        }
+    }
+
+    static showResultOverview() {
+        let result_container = document.getElementById("result-container");
+        result_container.classList.toggle("result-container-hidden");
+    }
+
+    static rankPlayers() {
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: "/rank Players",
+                cache: false,
+                success: function (scoreBoard) {
+                    Yahtzee.writeScoreForSection(scoreBoard["upperSection"], 'upper');
+                    Yahtzee.writeTotalScoreForSection(scoreBoard["totalUpperSection"], 'upper');
+                    Yahtzee.writeScoreForSection(scoreBoard["lowerSection"], 'lower');
+                    Yahtzee.writeTotalScoreForSection(scoreBoard["totalLowerSection"], 'lower');
+                }
+            });
+        });
     }
 }
