@@ -35,8 +35,8 @@
     <div id="result-container" class="result-container-hidden">
         <div class="result-overview" th:each="resultElement, iStat: ${resultElements}" th:id="${resultElement.playerName + '-result'}">
             <h2 th:id="rank" class="result-text" th:text="${'#'+(iStat.index + 1)}"></h2>
-            <h2 th:id="name" class="result-text" th:text="${resultElement.playerName}"></h2>
-            <h2 th:id="points" class="result-text" th:text="${resultElement.totalPoints}"></h2>
+            <h2 th:id="${'name-'+(iStat.index + 1)}" class="result-text" th:text="${resultElement.playerName}"></h2>
+            <h2 th:id="${'points-'+(iStat.index + 1)}" class="result-text" th:text="${resultElement.totalPoints}"></h2>
         </div>
     </div>
 </div>

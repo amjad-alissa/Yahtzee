@@ -175,7 +175,7 @@ public class YahtzeeGameService {
     public void createResultElements() {
         ResultElement[] resultElements = new ResultElement[yahtzeeGame.getPlayers().length];
         for (int index = 0; index < yahtzeeGame.getPlayers().length; index++) {
-            resultElements[index] = new ResultElement(yahtzeeGame.getPlayers()[index].getName(), 0);
+            resultElements[index] = new ResultElement(yahtzeeGame.getPlayers()[index].getName(), getTotalPoints(yahtzeeGame.getPlayers()[index].getName()));
         }
         yahtzeeGame.setResultElements(resultElements);
     }
@@ -185,9 +185,10 @@ public class YahtzeeGameService {
     }
 
     public ResultElement[] rankPlayers() {
+        createResultElements();
         for (int indexI = 0; indexI < yahtzeeGame.getPlayers().length - 1; indexI++) {
             for (int indexJ = 0; indexJ < yahtzeeGame.getPlayers().length - indexI - 1; indexJ++) {
-                if (yahtzeeGame.getResultElements()[indexJ].getTotalPoints() > yahtzeeGame.getResultElements()[indexJ + 1].getTotalPoints()) {
+                if (yahtzeeGame.getResultElements()[indexJ].getTotalPoints() < yahtzeeGame.getResultElements()[indexJ + 1].getTotalPoints()) {
                     ResultElement resultElement = yahtzeeGame.getResultElements()[indexJ];
                     yahtzeeGame.getResultElements()[indexJ] = yahtzeeGame.getResultElements()[indexJ + 1];
                     yahtzeeGame.getResultElements()[indexJ + 1] = resultElement;
@@ -195,5 +196,33 @@ public class YahtzeeGameService {
             }
         }
         return yahtzeeGame.getResultElements();
+    }
+
+    public int getTotalPoints(String name) {
+        int result = 0;
+        for (Player player : yahtzeeGame.getPlayers()) {
+            if (player.getName().equals(name)) {
+                result = player.getScoreboard().getTotalLowerSection()[2];
+                break;
+            }
+        }
+        return result;
+    }
+
+    public boolean checkEndOfGame() {
+        Player player = yahtzeeGame.getPlayers()[yahtzeeGame.getPlayers().length - 1];
+        for (ScoreElement scoreElement : player.getScoreboard().getUpperSection()) {
+            if (!scoreElement.isSelected()) {
+                return false;
+            }
+        }
+
+        for (ScoreElement scoreElement : player.getScoreboard().getLowerSection()) {
+            if (!scoreElement.isSelected()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
