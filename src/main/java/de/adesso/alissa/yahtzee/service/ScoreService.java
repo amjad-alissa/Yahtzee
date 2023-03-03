@@ -1,48 +1,86 @@
 package de.adesso.alissa.yahtzee.service;
 
-import de.adesso.alissa.yahtzee.game.CommitResponse;
-import de.adesso.alissa.yahtzee.game.Player;
-import de.adesso.alissa.yahtzee.game.ScoreElement;
-import de.adesso.alissa.yahtzee.game.enums.DiceValue;
+import de.adesso.alissa.yahtzee.game.*;
+import de.adesso.alissa.yahtzee.game.elements.Player;
+import de.adesso.alissa.yahtzee.game.elements.ScoreElement;
 import de.adesso.alissa.yahtzee.game.enums.Yahtzee;
 
+/**
+ * The ScoreService serves as the service class for processing the decision for players.
+ */
 public class ScoreService {
 
-    public CommitResponse processDecision(Player player, String tableSection, String rowLabel, int rowIndex) {
+    /**
+     * Process decision.
+     *
+     * @param rowLabel the row label
+     * @param section  the section
+     * @param playerId the player id
+     */
+    public void processDecision(String rowLabel, String section, int playerId) {
 
-        processCommittedDecision(player, tableSection, rowLabel, rowIndex);
+        //Find the current player
+        Player player = YahtzeeGame.getInstance().getPlayers()[playerId - 1];
+        registerPoints(rowLabel, section, player);
+
         int[] upperPoints = mapScoreElementPointsToIntegers(player.getScoreboard().getUpperSection());
         int[] lowerPoints = mapScoreElementPointsToIntegers(player.getScoreboard().getLowerSection());
-        int[] totalUpperPoints = computeTotalUpperSection(upperPoints);
-        int[] totalLowerPoints = computeTotalLowerSection(lowerPoints, upperPoints);
-        return new CommitResponse(upperPoints, lowerPoints, totalUpperPoints, totalLowerPoints);
+
+        computeTotalUpperSection(upperPoints, player);
+        computeTotalLowerSection(lowerPoints, player.getScoreboard().getTotalUpperSection(), player);
+
     }
-    public void processCommittedDecision(Player player, String tableSection, String rowLabel, int rowIndex) {
-        ScoreElement[] upperSection = player.getScoreboard().getUpperSection();
-        ScoreElement[] lowerSection = player.getScoreboard().getLowerSection();
-        if (tableSection.equals("upper-table")) {
-//            int points =
-            for (ScoreElement scoreElement : upperSection) {
-                if (scoreElement.getLabel().equals(rowLabel) && !scoreElement.isSelected()) {
-                    scoreElement.setSelected(true);
-//                    scoreElement.setPoints(points);
-                }
-            }
-        } else if (tableSection.equals("lower-table")) {
-            for (ScoreElement scoreElement : lowerSection) {
-                if (scoreElement.getLabel().equals(rowLabel) && !scoreElement.isSelected()) {
-                    scoreElement.setSelected(true);
-//                    scoreElement.setPoints(points);
-                }
+
+    /**
+     * Register points in the scoreboard for the respective player.
+     *
+     * @param rowLabel the row label
+     * @param section  the section
+     * @param player   the player
+     */
+    public void registerPoints(String rowLabel, String section, Player player) {
+        ScoreElement[] scoreSection = null;
+        int[] predictedPoints = null;
+        if (section.equals("upper-section")) {
+            scoreSection = player.getScoreboard().getUpperSection();
+            predictedPoints = YahtzeeGameService.getInstance().getDiceSetResponse().getPointsUpperSection();
+        } else if (section.equals("lower-section")) {
+            scoreSection = player.getScoreboard().getLowerSection();
+            predictedPoints = YahtzeeGameService.getInstance().getDiceSetResponse().getPointsLowerSection();
+        }
+        assert scoreSection != null;
+        assert predictedPoints != null;
+        registerPointsForSection(rowLabel, scoreSection, predictedPoints);
+    }
+
+    /**
+     * Register points for section.
+     *
+     * @param rowLabel        the row label
+     * @param pointsSection   the points section
+     * @param predictedPoints the predicted points
+     */
+    public void registerPointsForSection(String rowLabel, ScoreElement[] pointsSection, int[] predictedPoints) {
+        for (int index = 0; index < pointsSection.length; index++) {
+            if (pointsSection[index].getLabel().equals(rowLabel) && !pointsSection[index].isSelected()) {
+                pointsSection[index].setSelected(true);
+                pointsSection[index].setPoints(predictedPoints[index]);
+                break;
             }
         }
     }
 
-    public int[] computeTotalUpperSection(int[] upperSectionPoints) {
+    /**
+     * Compute total upper section.
+     *
+     * @param upperSectionPoints the upper section points
+     * @param player             the player
+     */
+    public void computeTotalUpperSection(int[] upperSectionPoints, Player player) {
 
         int totalPoints = 0;
-        int[] points = new int[DiceValue.THREE.getValue()];
-        for (int point :upperSectionPoints) {
+        int[] points = player.getScoreboard().getTotalUpperSection();
+        for (int point : upperSectionPoints) {
             totalPoints += point;
         }
 
@@ -57,13 +95,19 @@ public class ScoreService {
         //totalPoints upper section after bonus
         points[2] = points[0] + points[1];
 
-        return points;
     }
 
-    public int[] computeTotalLowerSection(int[] lowerSectionPoints, int[] totalUpperSection) {
+    /**
+     * Compute total lower section.
+     *
+     * @param lowerSectionPoints the lower section points
+     * @param totalUpperSection  the total upper section
+     * @param player             the player
+     */
+    public void computeTotalLowerSection(int[] lowerSectionPoints, int[] totalUpperSection, Player player) {
 
         int totalPoints = 0;
-        int[] points = new int[DiceValue.THREE.getValue()];
+        int[] points = player.getScoreboard().getTotalLowerSection();
         for (int point : lowerSectionPoints) {
             totalPoints += point;
         }
@@ -76,10 +120,14 @@ public class ScoreService {
 
         //totalPoints (The result)
         points[2] = points[0] + points[1];
-
-        return points;
     }
 
+    /**
+     * Map score element points to integers int [ ].
+     *
+     * @param scoreElements the score elements
+     * @return the int [ ]
+     */
     public int[] mapScoreElementPointsToIntegers(ScoreElement[] scoreElements) {
         int[] points = new int[scoreElements.length];
         for (int index = 0; index < points.length; index++) {

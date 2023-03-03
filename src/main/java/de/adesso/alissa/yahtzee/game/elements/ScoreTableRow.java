@@ -3,9 +3,9 @@ package de.adesso.alissa.yahtzee.game.elements;
 import java.util.ArrayList;
 
 /**
- * The type Table row.
+ * The type ScoreTableRow which serves as the visual representation as a row for the ScoreTable.
  */
-public class TableRow {
+public class ScoreTableRow {
     private final int id;
     private final ArrayList<String> diceIcons;
     private final String label;
@@ -14,20 +14,20 @@ public class TableRow {
 
 
     /**
-     * Instantiates a new Table row.
+     * Instantiates a new ScoreTable row.
      *
      * @param id        the id
      * @param diceIcons the dice icons
      * @param label     the label
      */
-    public TableRow(final int id, final ArrayList<String> diceIcons, final String label) {
+    public ScoreTableRow(final int id, final ArrayList<String> diceIcons, final String label) {
         this.id = id;
         this.diceIcons = diceIcons;
         this.label = label;
     }
 
     /**
-     * Instantiates a new Table row.
+     * Instantiates a new ScoreTable row.
      *
      * @param id             the id
      * @param diceIcons      the dice icons
@@ -35,7 +35,7 @@ public class TableRow {
      * @param score          the score
      * @param predictedScore the predicted score
      */
-    public TableRow(final int id, final ArrayList<String> diceIcons, final String label, final int score, final int predictedScore) {
+    public ScoreTableRow(final int id, final ArrayList<String> diceIcons, final String label, final int score, final int predictedScore) {
         this.id = id;
         this.diceIcons = diceIcons;
         this.label = label;
